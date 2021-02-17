@@ -10,16 +10,13 @@ def run():
     with grpc.insecure_channel('localhost:8666') as channel:
         # 客户端通过stub来实现rpc通信
         stub = Manager_grpc.ContainerManagerStub(channel)
-        temp = Manager.GetArchive_Request(
+        request = Manager.ListFile_Request(
             container_id = 'container1',
-            path = "/etc/apt/sources.list"
+            path = '/etc'
         )
         # 客户端必须使用定义好的类型，这里是HelloRequest类型
-        response = stub.GetArchive(temp)
-        file = open("temp.list","wb+")
-        for data in response:
-            file.write(data.data)
-    # print ("hello client received: " + response.container_id)
+        response = stub.ListFile(request)
+    print ("hello client received: " + str(response.exit_code))
 
 if __name__ == "__main__":
     logging.basicConfig()

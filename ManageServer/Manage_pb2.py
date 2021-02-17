@@ -19,10 +19,100 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0cManage.proto\"Y\n\rContainerAttr\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\t\x12\r\n\x05image\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"\x18\n\x16ListContainers_Request\"=\n\x17ListContainers_Response\x12\"\n\ncontainers\x18\x01 \x03(\x0b\x32\x0e.ContainerAttr\"\x19\n\x17PruneContainers_Request\"\x1a\n\x18PruneContainers_Response\",\n\x14GetContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"?\n\x15GetContainer_Response\x12&\n\x0e\x63ontainer_attr\x18\x01 \x01(\x0b\x32\x0e.ContainerAttr\".\n\x16StartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x19\n\x17StartContainer_Response\"-\n\x15StopContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x18\n\x16StopContainer_Response\"0\n\x18RestartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x1b\n\x19RestartContainer_Response\">\n\x17RemoveContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\r\n\x05\x66orce\x18\x02 \x01(\x08\"\x1a\n\x18RemoveContainer_Response\"U\n\x17\x43reateContainer_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x03 \x01(\t\"0\n\x18\x43reateContainer_Response\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"8\n\x12GetArchive_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\"#\n\x13GetArchive_Response\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x32\x8d\x05\n\x10\x43ontainerManager\x12\x45\n\x0eListContainers\x12\x17.ListContainers_Request\x1a\x18.ListContainers_Response\"\x00\x12H\n\x0fPruneContainers\x12\x18.PruneContainers_Request\x1a\x19.PruneContainers_Response\"\x00\x12?\n\x0cGetContainer\x12\x15.GetContainer_Request\x1a\x16.GetContainer_Response\"\x00\x12\x45\n\x0eStartContainer\x12\x17.StartContainer_Request\x1a\x18.StartContainer_Response\"\x00\x12\x42\n\rStopContainer\x12\x16.StopContainer_Request\x1a\x17.StopContainer_Response\"\x00\x12K\n\x10RestartContainer\x12\x19.RestartContainer_Request\x1a\x1a.RestartContainer_Response\"\x00\x12H\n\x0fRemoveContainer\x12\x18.RemoveContainer_Request\x1a\x19.RemoveContainer_Response\"\x00\x12H\n\x0f\x43reateContainer\x12\x18.CreateContainer_Request\x1a\x19.CreateContainer_Response\"\x00\x12;\n\nGetArchive\x12\x13.GetArchive_Request\x1a\x14.GetArchive_Response\"\x00\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x0cManage.proto\"Y\n\rContainerAttr\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\t\x12\r\n\x05image\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"\x18\n\x16ListContainers_Request\"=\n\x17ListContainers_Response\x12\"\n\ncontainers\x18\x01 \x03(\x0b\x32\x0e.ContainerAttr\"\x19\n\x17PruneContainers_Request\"\x1a\n\x18PruneContainers_Response\",\n\x14GetContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"?\n\x15GetContainer_Response\x12&\n\x0e\x63ontainer_attr\x18\x01 \x01(\x0b\x32\x0e.ContainerAttr\".\n\x16StartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x19\n\x17StartContainer_Response\"-\n\x15StopContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x18\n\x16StopContainer_Response\"0\n\x18RestartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x1b\n\x19RestartContainer_Response\">\n\x17RemoveContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\r\n\x05\x66orce\x18\x02 \x01(\x08\"\x1a\n\x18RemoveContainer_Response\"U\n\x17\x43reateContainer_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x03 \x01(\t\"0\n\x18\x43reateContainer_Response\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"5\n\x0fGetFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\" \n\x10GetFile_Response\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"8\n\x12UpdateFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"\x9d\x01\n\x13UpdateFile_Response\x12\x30\n\texit_code\x18\x01 \x01(\x0e\x32\x1d.UpdateFile_Response.ExitCode\x12\x0e\n\x06result\x18\x02 \x01(\t\"D\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x14\n\x10MTIME_SYNC_ERROR\x10\x01\x12\x15\n\x11\x46ILE_IS_NOT_EXIST\x10\x02\"6\n\x10ListFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\"p\n\x08\x46ileStat\x12%\n\tfile_type\x18\x01 \x01(\x0e\x32\x12.FileStat.FileType\x12\x11\n\tfile_name\x18\x02 \x01(\t\"*\n\x08\x46ileType\x12\x08\n\x04\x46ILE\x10\x00\x12\n\n\x06\x46OLDER\x10\x01\x12\x08\n\x04LINK\x10\x02\"\x9f\x01\n\x11ListFile_Response\x12.\n\texit_code\x18\x01 \x01(\x0e\x32\x1b.ListFile_Response.ExitCode\x12\x18\n\x05\x66iles\x18\x02 \x03(\x0b\x32\t.FileStat\"@\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x12\n\x0eMINOR_PROBLEMS\x10\x01\x12\x13\n\x0fSERIOUS_TROUBLE\x10\x02\x32\xf6\x05\n\x10\x43ontainerManager\x12\x45\n\x0eListContainers\x12\x17.ListContainers_Request\x1a\x18.ListContainers_Response\"\x00\x12H\n\x0fPruneContainers\x12\x18.PruneContainers_Request\x1a\x19.PruneContainers_Response\"\x00\x12?\n\x0cGetContainer\x12\x15.GetContainer_Request\x1a\x16.GetContainer_Response\"\x00\x12\x45\n\x0eStartContainer\x12\x17.StartContainer_Request\x1a\x18.StartContainer_Response\"\x00\x12\x42\n\rStopContainer\x12\x16.StopContainer_Request\x1a\x17.StopContainer_Response\"\x00\x12K\n\x10RestartContainer\x12\x19.RestartContainer_Request\x1a\x1a.RestartContainer_Response\"\x00\x12H\n\x0fRemoveContainer\x12\x18.RemoveContainer_Request\x1a\x19.RemoveContainer_Response\"\x00\x12H\n\x0f\x43reateContainer\x12\x18.CreateContainer_Request\x1a\x19.CreateContainer_Response\"\x00\x12\x32\n\x07GetFile\x12\x10.GetFile_Request\x1a\x11.GetFile_Response\"\x00\x30\x01\x12;\n\nUpdateFile\x12\x13.UpdateFile_Request\x1a\x14.UpdateFile_Response\"\x00(\x01\x12\x33\n\x08ListFile\x12\x11.ListFile_Request\x1a\x12.ListFile_Response\"\x00\x62\x06proto3'
 )
 
 
+
+_UPDATEFILE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
+  name='ExitCode',
+  full_name='UpdateFile_Response.ExitCode',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='SUCCESS', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='MTIME_SYNC_ERROR', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='FILE_IS_NOT_EXIST', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=1055,
+  serialized_end=1123,
+)
+_sym_db.RegisterEnumDescriptor(_UPDATEFILE_RESPONSE_EXITCODE)
+
+_FILESTAT_FILETYPE = _descriptor.EnumDescriptor(
+  name='FileType',
+  full_name='FileStat.FileType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='FILE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='FOLDER', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='LINK', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=1251,
+  serialized_end=1293,
+)
+_sym_db.RegisterEnumDescriptor(_FILESTAT_FILETYPE)
+
+_LISTFILE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
+  name='ExitCode',
+  full_name='ListFile_Response.ExitCode',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='SUCCESS', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='MINOR_PROBLEMS', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='SERIOUS_TROUBLE', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=1391,
+  serialized_end=1455,
+)
+_sym_db.RegisterEnumDescriptor(_LISTFILE_RESPONSE_EXITCODE)
 
 
 _CONTAINERATTR = _descriptor.Descriptor(
@@ -569,23 +659,23 @@ _CREATECONTAINER_RESPONSE = _descriptor.Descriptor(
 )
 
 
-_GETARCHIVE_REQUEST = _descriptor.Descriptor(
-  name='GetArchive_Request',
-  full_name='GetArchive_Request',
+_GETFILE_REQUEST = _descriptor.Descriptor(
+  name='GetFile_Request',
+  full_name='GetFile_Request',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='container_id', full_name='GetArchive_Request.container_id', index=0,
+      name='container_id', full_name='GetFile_Request.container_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='path', full_name='GetArchive_Request.path', index=1,
+      name='path', full_name='GetFile_Request.path', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -604,20 +694,20 @@ _GETARCHIVE_REQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=818,
-  serialized_end=874,
+  serialized_end=871,
 )
 
 
-_GETARCHIVE_RESPONSE = _descriptor.Descriptor(
-  name='GetArchive_Response',
-  full_name='GetArchive_Response',
+_GETFILE_RESPONSE = _descriptor.Descriptor(
+  name='GetFile_Response',
+  full_name='GetFile_Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='data', full_name='GetArchive_Response.data', index=0,
+      name='data', full_name='GetFile_Response.data', index=0,
       number=1, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -635,12 +725,217 @@ _GETARCHIVE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=876,
-  serialized_end=911,
+  serialized_start=873,
+  serialized_end=905,
+)
+
+
+_UPDATEFILE_REQUEST = _descriptor.Descriptor(
+  name='UpdateFile_Request',
+  full_name='UpdateFile_Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='container_id', full_name='UpdateFile_Request.container_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='UpdateFile_Request.data', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=907,
+  serialized_end=963,
+)
+
+
+_UPDATEFILE_RESPONSE = _descriptor.Descriptor(
+  name='UpdateFile_Response',
+  full_name='UpdateFile_Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='exit_code', full_name='UpdateFile_Response.exit_code', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='result', full_name='UpdateFile_Response.result', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _UPDATEFILE_RESPONSE_EXITCODE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=966,
+  serialized_end=1123,
+)
+
+
+_LISTFILE_REQUEST = _descriptor.Descriptor(
+  name='ListFile_Request',
+  full_name='ListFile_Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='container_id', full_name='ListFile_Request.container_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='path', full_name='ListFile_Request.path', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1125,
+  serialized_end=1179,
+)
+
+
+_FILESTAT = _descriptor.Descriptor(
+  name='FileStat',
+  full_name='FileStat',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='file_type', full_name='FileStat.file_type', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='file_name', full_name='FileStat.file_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _FILESTAT_FILETYPE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1181,
+  serialized_end=1293,
+)
+
+
+_LISTFILE_RESPONSE = _descriptor.Descriptor(
+  name='ListFile_Response',
+  full_name='ListFile_Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='exit_code', full_name='ListFile_Response.exit_code', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='files', full_name='ListFile_Response.files', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _LISTFILE_RESPONSE_EXITCODE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1296,
+  serialized_end=1455,
 )
 
 _LISTCONTAINERS_RESPONSE.fields_by_name['containers'].message_type = _CONTAINERATTR
 _GETCONTAINER_RESPONSE.fields_by_name['container_attr'].message_type = _CONTAINERATTR
+_UPDATEFILE_RESPONSE.fields_by_name['exit_code'].enum_type = _UPDATEFILE_RESPONSE_EXITCODE
+_UPDATEFILE_RESPONSE_EXITCODE.containing_type = _UPDATEFILE_RESPONSE
+_FILESTAT.fields_by_name['file_type'].enum_type = _FILESTAT_FILETYPE
+_FILESTAT_FILETYPE.containing_type = _FILESTAT
+_LISTFILE_RESPONSE.fields_by_name['exit_code'].enum_type = _LISTFILE_RESPONSE_EXITCODE
+_LISTFILE_RESPONSE.fields_by_name['files'].message_type = _FILESTAT
+_LISTFILE_RESPONSE_EXITCODE.containing_type = _LISTFILE_RESPONSE
 DESCRIPTOR.message_types_by_name['ContainerAttr'] = _CONTAINERATTR
 DESCRIPTOR.message_types_by_name['ListContainers_Request'] = _LISTCONTAINERS_REQUEST
 DESCRIPTOR.message_types_by_name['ListContainers_Response'] = _LISTCONTAINERS_RESPONSE
@@ -658,8 +953,13 @@ DESCRIPTOR.message_types_by_name['RemoveContainer_Request'] = _REMOVECONTAINER_R
 DESCRIPTOR.message_types_by_name['RemoveContainer_Response'] = _REMOVECONTAINER_RESPONSE
 DESCRIPTOR.message_types_by_name['CreateContainer_Request'] = _CREATECONTAINER_REQUEST
 DESCRIPTOR.message_types_by_name['CreateContainer_Response'] = _CREATECONTAINER_RESPONSE
-DESCRIPTOR.message_types_by_name['GetArchive_Request'] = _GETARCHIVE_REQUEST
-DESCRIPTOR.message_types_by_name['GetArchive_Response'] = _GETARCHIVE_RESPONSE
+DESCRIPTOR.message_types_by_name['GetFile_Request'] = _GETFILE_REQUEST
+DESCRIPTOR.message_types_by_name['GetFile_Response'] = _GETFILE_RESPONSE
+DESCRIPTOR.message_types_by_name['UpdateFile_Request'] = _UPDATEFILE_REQUEST
+DESCRIPTOR.message_types_by_name['UpdateFile_Response'] = _UPDATEFILE_RESPONSE
+DESCRIPTOR.message_types_by_name['ListFile_Request'] = _LISTFILE_REQUEST
+DESCRIPTOR.message_types_by_name['FileStat'] = _FILESTAT
+DESCRIPTOR.message_types_by_name['ListFile_Response'] = _LISTFILE_RESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ContainerAttr = _reflection.GeneratedProtocolMessageType('ContainerAttr', (_message.Message,), {
@@ -781,19 +1081,54 @@ CreateContainer_Response = _reflection.GeneratedProtocolMessageType('CreateConta
   })
 _sym_db.RegisterMessage(CreateContainer_Response)
 
-GetArchive_Request = _reflection.GeneratedProtocolMessageType('GetArchive_Request', (_message.Message,), {
-  'DESCRIPTOR' : _GETARCHIVE_REQUEST,
+GetFile_Request = _reflection.GeneratedProtocolMessageType('GetFile_Request', (_message.Message,), {
+  'DESCRIPTOR' : _GETFILE_REQUEST,
   '__module__' : 'Manage_pb2'
-  # @@protoc_insertion_point(class_scope:GetArchive_Request)
+  # @@protoc_insertion_point(class_scope:GetFile_Request)
   })
-_sym_db.RegisterMessage(GetArchive_Request)
+_sym_db.RegisterMessage(GetFile_Request)
 
-GetArchive_Response = _reflection.GeneratedProtocolMessageType('GetArchive_Response', (_message.Message,), {
-  'DESCRIPTOR' : _GETARCHIVE_RESPONSE,
+GetFile_Response = _reflection.GeneratedProtocolMessageType('GetFile_Response', (_message.Message,), {
+  'DESCRIPTOR' : _GETFILE_RESPONSE,
   '__module__' : 'Manage_pb2'
-  # @@protoc_insertion_point(class_scope:GetArchive_Response)
+  # @@protoc_insertion_point(class_scope:GetFile_Response)
   })
-_sym_db.RegisterMessage(GetArchive_Response)
+_sym_db.RegisterMessage(GetFile_Response)
+
+UpdateFile_Request = _reflection.GeneratedProtocolMessageType('UpdateFile_Request', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEFILE_REQUEST,
+  '__module__' : 'Manage_pb2'
+  # @@protoc_insertion_point(class_scope:UpdateFile_Request)
+  })
+_sym_db.RegisterMessage(UpdateFile_Request)
+
+UpdateFile_Response = _reflection.GeneratedProtocolMessageType('UpdateFile_Response', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEFILE_RESPONSE,
+  '__module__' : 'Manage_pb2'
+  # @@protoc_insertion_point(class_scope:UpdateFile_Response)
+  })
+_sym_db.RegisterMessage(UpdateFile_Response)
+
+ListFile_Request = _reflection.GeneratedProtocolMessageType('ListFile_Request', (_message.Message,), {
+  'DESCRIPTOR' : _LISTFILE_REQUEST,
+  '__module__' : 'Manage_pb2'
+  # @@protoc_insertion_point(class_scope:ListFile_Request)
+  })
+_sym_db.RegisterMessage(ListFile_Request)
+
+FileStat = _reflection.GeneratedProtocolMessageType('FileStat', (_message.Message,), {
+  'DESCRIPTOR' : _FILESTAT,
+  '__module__' : 'Manage_pb2'
+  # @@protoc_insertion_point(class_scope:FileStat)
+  })
+_sym_db.RegisterMessage(FileStat)
+
+ListFile_Response = _reflection.GeneratedProtocolMessageType('ListFile_Response', (_message.Message,), {
+  'DESCRIPTOR' : _LISTFILE_RESPONSE,
+  '__module__' : 'Manage_pb2'
+  # @@protoc_insertion_point(class_scope:ListFile_Response)
+  })
+_sym_db.RegisterMessage(ListFile_Response)
 
 
 
@@ -804,8 +1139,8 @@ _CONTAINERMANAGER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=914,
-  serialized_end=1567,
+  serialized_start=1458,
+  serialized_end=2216,
   methods=[
   _descriptor.MethodDescriptor(
     name='ListContainers',
@@ -888,12 +1223,32 @@ _CONTAINERMANAGER = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='GetArchive',
-    full_name='ContainerManager.GetArchive',
+    name='GetFile',
+    full_name='ContainerManager.GetFile',
     index=8,
     containing_service=None,
-    input_type=_GETARCHIVE_REQUEST,
-    output_type=_GETARCHIVE_RESPONSE,
+    input_type=_GETFILE_REQUEST,
+    output_type=_GETFILE_RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateFile',
+    full_name='ContainerManager.UpdateFile',
+    index=9,
+    containing_service=None,
+    input_type=_UPDATEFILE_REQUEST,
+    output_type=_UPDATEFILE_RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListFile',
+    full_name='ContainerManager.ListFile',
+    index=10,
+    containing_service=None,
+    input_type=_LISTFILE_REQUEST,
+    output_type=_LISTFILE_RESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

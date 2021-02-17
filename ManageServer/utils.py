@@ -1,5 +1,7 @@
 import docker
-import os 
+import os
+import re
+
 DOCKERCLIENT = docker.from_env()
 CONTAINER_ATTRS = [['Id'], ['Created'], ['State', 'Status'], ['Image'], ['Name']]
 IMAGE_ATTRS = [['Id'], ['RepoTags'], ['Created'], ['Size'], ['Author']]
@@ -82,6 +84,11 @@ class ContainerUtils:
     def GetArchive(container_id, path, chunk_size=2097152):
         container = DOCKERCLIENT.containers.get(container_id)
         return container.get_archive(path, chunk_size=chunk_size)
+
+    # @staticmethod 
+    # def PutArchive(container_id, path, data):
+    #     container = DOCKERCLIENT.containers.get(container_id)
+    #     return container.put_archive(path, chunk_size=chunk_size)
 
     @staticmethod 
     def ExecCommand(container_id, exec_cmd):
@@ -168,4 +175,13 @@ if __name__ == '__main__':
     #     cmd=["stat","-c","%Y","/etc/apt/sources.list"]
     # )
     # print(str(output, encoding='utf-8'),end="")
-    ContainerUtils.GetFileStat('container1', '/etc/apt/sour')
+    # ContainerUtils.GetFileStat('container1', '/etc/apt/sour')
+    cmd = ["ls", "-Al", "/etc"]
+    exit_code, output = ContainerUtils.ExecCommand(container_id="container1",exec_cmd = cmd)
+    print(type(exit_code))
+    # List = output.split('\n')[1:]
+    # for file in List:
+    #     temp = file.split(' ')
+    #     stat = temp[0]
+    #     filename = temp[-1]
+    #     print(stat, filename)

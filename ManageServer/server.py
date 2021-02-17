@@ -56,10 +56,39 @@ class ContainerManagerHandler(Manager_grpc.ContainerManagerServicer ):
         ContainerUtils.RestartContainer(request.container_id)
         return Manager.RestartContainer_Response()
 
-    def GetArchive(self, request ,context):
+    def GetFile(self, request ,context):
         bits , stat = ContainerUtils.GetArchive(request.container_id, request.path)
-        for data in bits:
-            yield Manager.GetArchive_Response(data = data)
+        pass
+    
+    def UpdateFile(self, request ,context):
+        pass
+    
+    def ListFile(self, request ,context):
+        cmd = ["ls", "-Al", request.path]
+        exit_code, output = ContainerUtils.ExecCommand(request.container_id, cmd)
+        response = Manager.ListFile_Response()
+        if exit_code == 0:
+            response.exit_code = Manager.ListFile_Response.ExitCode.SUCCESS
+            List = output.strip().split('\n')[1:]
+            for file in List:
+                temp = file.split(' ')
+                stat = temp[0]
+                filename = temp[-1]
+                temp = response.files.add()
+                temp.file_name = filename
+                if stat[0] == '-':
+                    temp.file_type = Manager.FileStat.FileType.FILE
+                elif stat[0] == 'd':
+                    temp.file_type = Manager.FileStat.FileType.FOLDER
+                elif stat[0] == 'i':
+                    temp.file_type = Manager.FileStat.FileType.LINK
+        elif exit_code == 1:
+            response.exit_code = Manager.ListFile_Response.ExitCode.MINOR_PROBLEMS
+        elif exit_code == 2:
+            response.exit_code = Manager.ListFile_Response.ExitCode.SERIOUS_TROUBLE
+        return response
+    
+
 
     
         

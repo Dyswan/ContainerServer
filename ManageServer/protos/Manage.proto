@@ -65,8 +65,36 @@ message UpdateFile_Request{
      bytes data = 2;
 }
 message UpdateFile_Response{
-     int32 exit_code = 1;
+     enum ExitCode {
+          SUCCESS = 0;
+          MTIME_SYNC_ERROR = 1;
+          FILE_IS_NOT_EXIST = 2;
+     }
+     ExitCode exit_code = 1;
      string result = 2;
+}
+
+message ListFile_Request{
+     string container_id = 1;
+     string path = 2;
+}
+message FileStat{
+     enum FileType{
+          FILE = 0;
+          FOLDER = 1;
+          LINK = 2;
+     }
+     FileType file_type = 1;
+     string file_name = 2;
+}
+message ListFile_Response{
+     enum ExitCode {
+          SUCCESS = 0;
+          MINOR_PROBLEMS = 1;
+          SERIOUS_TROUBLE = 2;
+     }
+     ExitCode exit_code = 1;
+     repeated FileStat files = 2;
 }
 
 service ContainerManager{
@@ -82,6 +110,7 @@ service ContainerManager{
 
      rpc GetFile(GetFile_Request) returns (stream GetFile_Response) {}
      rpc UpdateFile(stream UpdateFile_Request) returns (UpdateFile_Response){}
+     rpc ListFile(ListFile_Request) returns (ListFile_Response) {}
 }
 
 // service ImageManager{
