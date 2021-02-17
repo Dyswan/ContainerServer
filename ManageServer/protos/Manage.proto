@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+message ContainerAttr{
+     string id = 1;
+     string created = 2;
+     string status = 3;
+     string image = 4;
+     string name = 5;
+}
+message ListContainers_Request{}
+message ListContainers_Response{
+     repeated ContainerAttr containers = 1;
+}
+
+message PruneContainers_Request{}
+message PruneContainers_Response{}
+
+message GetContainer_Request{
+     string container_id = 1;
+}
+message GetContainer_Response{
+     ContainerAttr container_attr = 1;
+}
+
+message StartContainer_Request{
+     string container_id = 1;
+}
+message StartContainer_Response{}
+
+message StopContainer_Request{
+     string container_id = 1;
+}
+message StopContainer_Response{}
+
+message RestartContainer_Request{
+     string container_id = 1;
+}
+message RestartContainer_Response{}
+
+message RemoveContainer_Request{
+     string container_id = 1;
+     bool force = 2;
+}
+message RemoveContainer_Response{}
+
+message CreateContainer_Request{
+     string image_id = 1;
+     string username = 2;
+     string container_name = 3;
+}
+message CreateContainer_Response{
+     string container_id = 1;
+}
+
+message GetFile_Request{
+     string container_id = 1;
+     string path = 2;
+}
+message GetFile_Response{
+     bytes data = 1;
+}
+
+message UpdateFile_Request{
+     string container_id = 1;
+     bytes data = 2;
+}
+message UpdateFile_Response{
+     int32 exit_code = 1;
+     string result = 2;
+}
+
+service ContainerManager{
+     rpc ListContainers(ListContainers_Request) returns (ListContainers_Response) {}
+     rpc PruneContainers(PruneContainers_Request) returns (PruneContainers_Response) {}
+
+     rpc GetContainer(GetContainer_Request) returns (GetContainer_Response) {}
+     rpc StartContainer(StartContainer_Request) returns (StartContainer_Response) {}
+     rpc StopContainer(StopContainer_Request) returns (StopContainer_Response) {}
+     rpc RestartContainer(RestartContainer_Request) returns (RestartContainer_Response) {}
+     rpc RemoveContainer(RemoveContainer_Request) returns (RemoveContainer_Response) {}
+     rpc CreateContainer(CreateContainer_Request) returns (CreateContainer_Response) {}
+
+     rpc GetFile(GetFile_Request) returns (stream GetFile_Response) {}
+     rpc UpdateFile(stream UpdateFile_Request) returns (UpdateFile_Response){}
+}
+
+// service ImageManager{
+//      rpc ListImages() returns (){}
+//      rpc PruneImages() returns (){}
+
+//      rpc PullImage() returns (){}
+//      rpc BuildImage() returns (){}
+//      rpc LoadImage() returns (){}
+//      rpc GetImage() returns (){}
+//      rpc RemoveImage() returns (){}
+
+// }
