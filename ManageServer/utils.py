@@ -85,10 +85,10 @@ class ContainerUtils:
         container = DOCKERCLIENT.containers.get(container_id)
         return container.get_archive(path, chunk_size=chunk_size)
 
-    # @staticmethod 
-    # def PutArchive(container_id, path, data):
-    #     container = DOCKERCLIENT.containers.get(container_id)
-    #     return container.put_archive(path, chunk_size=chunk_size)
+    @staticmethod 
+    def PutArchive(container_id, path, data):
+        container = DOCKERCLIENT.containers.get(container_id)
+        return container.put_archive(path, data)
 
     @staticmethod 
     def ExecCommand(container_id, exec_cmd):
@@ -96,7 +96,7 @@ class ContainerUtils:
         exit_code, output = container.exec_run(
             cmd=exec_cmd
         )
-        output = str(output, encoding='utf-8')
+        output = str(output, encoding='utf-8').strip()
         return exit_code, output
 
     # @staticmethod
@@ -176,9 +176,16 @@ if __name__ == '__main__':
     # )
     # print(str(output, encoding='utf-8'),end="")
     # ContainerUtils.GetFileStat('container1', '/etc/apt/sour')
-    cmd = ["ls", "-Al", "/etc"]
-    exit_code, output = ContainerUtils.ExecCommand(container_id="container1",exec_cmd = cmd)
-    print(type(exit_code))
+    old = [1,[1,2,3],3]
+    new = old.copy()
+    print('Before:')
+    print(old)
+    print(new)
+    new[0] = 3
+    new[1][0] =3
+    print('After:')
+    print(old)
+    print(new)
     # List = output.split('\n')[1:]
     # for file in List:
     #     temp = file.split(' ')

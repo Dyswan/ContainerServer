@@ -7,6 +7,10 @@ import grpc
 import Manage_pb2 as Manager
 import Manage_pb2_grpc as Manager_grpc
 
+def GenerateData(List):
+    for message in List:
+        yield message.data
+
 class ContainerManagerHandler(Manager_grpc.ContainerManagerServicer ):
     def __init__(self):
         pass
@@ -58,10 +62,42 @@ class ContainerManagerHandler(Manager_grpc.ContainerManagerServicer ):
 
     def GetFile(self, request ,context):
         bits , stat = ContainerUtils.GetArchive(request.container_id, request.path)
-        pass
-    
+        for data in bits:
+            yield Manager.GetFile_Response(data = data)
+      
     def UpdateFile(self, request ,context):
-        pass
+        temp = next(request)
+        container_id = temp.container_id
+        path = temp.path
+        file_name = temp.file_name
+        old_version = temp.old_version
+        exit_code, old_file_stat = ContainerUtils.ExecCommand(\
+            container_id=container_id,
+            exec_cmd = ["stat", "-c", "%Y", path+"/"+file_name]
+        )
+        if exit_code == 0:
+            if old_version == old_file_stat or temp.force:
+                generate_data = GenerateData(request)
+                if not ContainerUtils.PutArchive(container_id, path, generate_data):
+                    return Manager.UpdateFile_Response(exit_code=Manager.UpdateFile_Response.ExitCode.UNKNOWN_ERROR)
+                else:
+                    exit_code, new_version = ContainerUtils.ExecCommand(\
+                        container_id=container_id,
+                        exec_cmd = ["stat", "-c", "%Y", path]
+                    )
+                    return Manager.UpdateFile_Response(\
+                            exit_code = Manager.UpdateFile_Response.ExitCode.SUCCESS,
+                            new_version = new_version
+                        )
+            else:
+                return Manager.UpdateFile_Response(\
+                    exit_code=Manager.UpdateFile_Response.ExitCode.MTIME_SYNC_ERROR)
+        elif exit_code == 1:
+            return Manager.UpdateFile_Response(\
+                exit_code=Manager.UpdateFile_Response.ExitCode.FILE_IS_NOT_EXIST)
+        
+
+
     
     def ListFile(self, request ,context):
         cmd = ["ls", "-Al", request.path]

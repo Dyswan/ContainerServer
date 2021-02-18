@@ -61,17 +61,25 @@ message GetFile_Response{
 }
 
 message UpdateFile_Request{
+     //使用文件流时
+     // 第一次message不包含data
+     // 第一次之后都仅包含data
      string container_id = 1;
-     bytes data = 2;
+     string path = 2;
+     string file_name = 3;
+     string old_version = 4;
+     bool force = 5;
+     bytes data = 6;
 }
 message UpdateFile_Response{
      enum ExitCode {
           SUCCESS = 0;
           MTIME_SYNC_ERROR = 1;
           FILE_IS_NOT_EXIST = 2;
+          UNKNOWN_ERROR = 3;
      }
      ExitCode exit_code = 1;
-     string result = 2;
+     string new_version = 2;
 }
 
 message ListFile_Request{
@@ -108,7 +116,8 @@ service ContainerManager{
      rpc RemoveContainer(RemoveContainer_Request) returns (RemoveContainer_Response) {}
      rpc CreateContainer(CreateContainer_Request) returns (CreateContainer_Response) {}
 
-     rpc GetFile(GetFile_Request) returns (stream GetFile_Response) {}
+     //所有的data为tar
+     rpc GetFile(GetFile_Request) returns (stream GetFile_Response) {} 
      rpc UpdateFile(stream UpdateFile_Request) returns (UpdateFile_Response){}
      rpc ListFile(ListFile_Request) returns (ListFile_Response) {}
 }
