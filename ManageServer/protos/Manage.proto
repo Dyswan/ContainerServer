@@ -105,7 +105,7 @@ message ListFile_Response{
      repeated FileStat files = 2;
 }
 
-service ContainerManager{
+service Manager{
      rpc ListContainers(ListContainers_Request) returns (ListContainers_Response) {}
      rpc PruneContainers(PruneContainers_Request) returns (PruneContainers_Response) {}
 
@@ -120,16 +120,13 @@ service ContainerManager{
      rpc GetFile(GetFile_Request) returns (stream GetFile_Response) {} 
      rpc UpdateFile(UpdateFile_Request) returns (UpdateFile_Response){}
      rpc ListFile(ListFile_Request) returns (ListFile_Response) {}
+
+     // rpc ListImages() returns (){}
+     // rpc PruneImages() returns (){}
+
+     // rpc PullImage() returns (){}
+     // rpc BuildImage() returns (){}
+     // rpc LoadImage() returns (){}
+     // rpc GetImage() returns (){}
+     // rpc RemoveImage() returns (){}
 }
-
-// service ImageManager{
-//      rpc ListImages() returns (){}
-//      rpc PruneImages() returns (){}
-
-//      rpc PullImage() returns (){}
-//      rpc BuildImage() returns (){}
-//      rpc LoadImage() returns (){}
-//      rpc GetImage() returns (){}
-//      rpc RemoveImage() returns (){}
-
-// }

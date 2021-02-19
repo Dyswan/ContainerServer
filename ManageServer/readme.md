@@ -1,1 +1,1 @@
-python3 -m grpc_tools.protoc -I=./protos --python_out=./ --grpc_python_out=./ ./protos/Manage.proto
+python3 -m grpc_tools.protoc -I=./protos --python_out=./grpc_packages --grpc_python_out=./grpc_packages  ./protos/Manage.proto

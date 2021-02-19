@@ -1,5 +1,6 @@
 import sys
 sys.path.append('./protos')
+sys.path.append('./grpc_packages')
 
 from concurrent import futures
 from utils import ContainerUtils, ImageUtils
@@ -11,7 +12,7 @@ def GenerateData(List):
     for message in List:
         yield message.data
 
-class ContainerManagerHandler(Manager_grpc.ContainerManagerServicer ):
+class ManagerHandler(Manager_grpc.ManagerServicer ):
     def __init__(self):
         pass
     def PruneContainers(self, request,context):
@@ -129,8 +130,8 @@ class ContainerManagerHandler(Manager_grpc.ContainerManagerServicer ):
         
 if __name__=="__main__":
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=4))
-    Manager_grpc.add_ContainerManagerServicer_to_server(
-        ContainerManagerHandler(), server)
+    Manager_grpc.add_ManagerServicer_to_server(
+        ManagerHandler(), server)
     server.add_insecure_port('[::]:8666')
     server.start()
     print("Starting python server...")

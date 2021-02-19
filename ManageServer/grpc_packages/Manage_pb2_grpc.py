@@ -5,7 +5,7 @@ import grpc
 import Manage_pb2 as Manage__pb2
 
 
-class ContainerManagerStub(object):
+class ManagerStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,63 +15,63 @@ class ContainerManagerStub(object):
             channel: A grpc.Channel.
         """
         self.ListContainers = channel.unary_unary(
-                '/ContainerManager/ListContainers',
+                '/Manager/ListContainers',
                 request_serializer=Manage__pb2.ListContainers_Request.SerializeToString,
                 response_deserializer=Manage__pb2.ListContainers_Response.FromString,
                 )
         self.PruneContainers = channel.unary_unary(
-                '/ContainerManager/PruneContainers',
+                '/Manager/PruneContainers',
                 request_serializer=Manage__pb2.PruneContainers_Request.SerializeToString,
                 response_deserializer=Manage__pb2.PruneContainers_Response.FromString,
                 )
         self.GetContainer = channel.unary_unary(
-                '/ContainerManager/GetContainer',
+                '/Manager/GetContainer',
                 request_serializer=Manage__pb2.GetContainer_Request.SerializeToString,
                 response_deserializer=Manage__pb2.GetContainer_Response.FromString,
                 )
         self.StartContainer = channel.unary_unary(
-                '/ContainerManager/StartContainer',
+                '/Manager/StartContainer',
                 request_serializer=Manage__pb2.StartContainer_Request.SerializeToString,
                 response_deserializer=Manage__pb2.StartContainer_Response.FromString,
                 )
         self.StopContainer = channel.unary_unary(
-                '/ContainerManager/StopContainer',
+                '/Manager/StopContainer',
                 request_serializer=Manage__pb2.StopContainer_Request.SerializeToString,
                 response_deserializer=Manage__pb2.StopContainer_Response.FromString,
                 )
         self.RestartContainer = channel.unary_unary(
-                '/ContainerManager/RestartContainer',
+                '/Manager/RestartContainer',
                 request_serializer=Manage__pb2.RestartContainer_Request.SerializeToString,
                 response_deserializer=Manage__pb2.RestartContainer_Response.FromString,
                 )
         self.RemoveContainer = channel.unary_unary(
-                '/ContainerManager/RemoveContainer',
+                '/Manager/RemoveContainer',
                 request_serializer=Manage__pb2.RemoveContainer_Request.SerializeToString,
                 response_deserializer=Manage__pb2.RemoveContainer_Response.FromString,
                 )
         self.CreateContainer = channel.unary_unary(
-                '/ContainerManager/CreateContainer',
+                '/Manager/CreateContainer',
                 request_serializer=Manage__pb2.CreateContainer_Request.SerializeToString,
                 response_deserializer=Manage__pb2.CreateContainer_Response.FromString,
                 )
         self.GetFile = channel.unary_stream(
-                '/ContainerManager/GetFile',
+                '/Manager/GetFile',
                 request_serializer=Manage__pb2.GetFile_Request.SerializeToString,
                 response_deserializer=Manage__pb2.GetFile_Response.FromString,
                 )
         self.UpdateFile = channel.unary_unary(
-                '/ContainerManager/UpdateFile',
+                '/Manager/UpdateFile',
                 request_serializer=Manage__pb2.UpdateFile_Request.SerializeToString,
                 response_deserializer=Manage__pb2.UpdateFile_Response.FromString,
                 )
         self.ListFile = channel.unary_unary(
-                '/ContainerManager/ListFile',
+                '/Manager/ListFile',
                 request_serializer=Manage__pb2.ListFile_Request.SerializeToString,
                 response_deserializer=Manage__pb2.ListFile_Response.FromString,
                 )
 
 
-class ContainerManagerServicer(object):
+class ManagerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def ListContainers(self, request, context):
@@ -142,7 +142,7 @@ class ContainerManagerServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_ContainerManagerServicer_to_server(servicer, server):
+def add_ManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ListContainers': grpc.unary_unary_rpc_method_handler(
                     servicer.ListContainers,
@@ -201,12 +201,12 @@ def add_ContainerManagerServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'ContainerManager', rpc_method_handlers)
+            'Manager', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class ContainerManager(object):
+class Manager(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -220,7 +220,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/ListContainers',
+        return grpc.experimental.unary_unary(request, target, '/Manager/ListContainers',
             Manage__pb2.ListContainers_Request.SerializeToString,
             Manage__pb2.ListContainers_Response.FromString,
             options, channel_credentials,
@@ -237,7 +237,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/PruneContainers',
+        return grpc.experimental.unary_unary(request, target, '/Manager/PruneContainers',
             Manage__pb2.PruneContainers_Request.SerializeToString,
             Manage__pb2.PruneContainers_Response.FromString,
             options, channel_credentials,
@@ -254,7 +254,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/GetContainer',
+        return grpc.experimental.unary_unary(request, target, '/Manager/GetContainer',
             Manage__pb2.GetContainer_Request.SerializeToString,
             Manage__pb2.GetContainer_Response.FromString,
             options, channel_credentials,
@@ -271,7 +271,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/StartContainer',
+        return grpc.experimental.unary_unary(request, target, '/Manager/StartContainer',
             Manage__pb2.StartContainer_Request.SerializeToString,
             Manage__pb2.StartContainer_Response.FromString,
             options, channel_credentials,
@@ -288,7 +288,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/StopContainer',
+        return grpc.experimental.unary_unary(request, target, '/Manager/StopContainer',
             Manage__pb2.StopContainer_Request.SerializeToString,
             Manage__pb2.StopContainer_Response.FromString,
             options, channel_credentials,
@@ -305,7 +305,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/RestartContainer',
+        return grpc.experimental.unary_unary(request, target, '/Manager/RestartContainer',
             Manage__pb2.RestartContainer_Request.SerializeToString,
             Manage__pb2.RestartContainer_Response.FromString,
             options, channel_credentials,
@@ -322,7 +322,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/RemoveContainer',
+        return grpc.experimental.unary_unary(request, target, '/Manager/RemoveContainer',
             Manage__pb2.RemoveContainer_Request.SerializeToString,
             Manage__pb2.RemoveContainer_Response.FromString,
             options, channel_credentials,
@@ -339,7 +339,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/CreateContainer',
+        return grpc.experimental.unary_unary(request, target, '/Manager/CreateContainer',
             Manage__pb2.CreateContainer_Request.SerializeToString,
             Manage__pb2.CreateContainer_Response.FromString,
             options, channel_credentials,
@@ -356,7 +356,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/ContainerManager/GetFile',
+        return grpc.experimental.unary_stream(request, target, '/Manager/GetFile',
             Manage__pb2.GetFile_Request.SerializeToString,
             Manage__pb2.GetFile_Response.FromString,
             options, channel_credentials,
@@ -373,7 +373,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/UpdateFile',
+        return grpc.experimental.unary_unary(request, target, '/Manager/UpdateFile',
             Manage__pb2.UpdateFile_Request.SerializeToString,
             Manage__pb2.UpdateFile_Response.FromString,
             options, channel_credentials,
@@ -390,7 +390,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ContainerManager/ListFile',
+        return grpc.experimental.unary_unary(request, target, '/Manager/ListFile',
             Manage__pb2.ListFile_Request.SerializeToString,
             Manage__pb2.ListFile_Response.FromString,
             options, channel_credentials,
