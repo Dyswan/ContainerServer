@@ -66,19 +66,18 @@ class ContainerManagerHandler(Manager_grpc.ContainerManagerServicer ):
             yield Manager.GetFile_Response(data = data)
       
     def UpdateFile(self, request ,context):
-        temp = next(request)
-        container_id = temp.container_id
-        path = temp.path
-        file_name = temp.file_name
-        old_version = temp.old_version
+        container_id = request.container_id
+        path = request.path
+        file_name = request.file_name
+        old_version = request.old_version
         exit_code, old_file_stat = ContainerUtils.ExecCommand(\
             container_id=container_id,
             exec_cmd = ["stat", "-c", "%Y", path+"/"+file_name]
         )
         if exit_code == 0:
-            if old_version == old_file_stat or temp.force:
-                generate_data = GenerateData(request)
-                if not ContainerUtils.PutArchive(container_id, path, generate_data):
+            if old_version == old_file_stat or request.force:
+                # generate_data = GenerateData(request)
+                if not ContainerUtils.PutArchive(container_id, path, request.data):
                     return Manager.UpdateFile_Response(exit_code=Manager.UpdateFile_Response.ExitCode.UNKNOWN_ERROR)
                 else:
                     exit_code, new_version = ContainerUtils.ExecCommand(\

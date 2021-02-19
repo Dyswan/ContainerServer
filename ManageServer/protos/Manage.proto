@@ -118,7 +118,7 @@ service ContainerManager{
 
      //所有的data为tar
      rpc GetFile(GetFile_Request) returns (stream GetFile_Response) {} 
-     rpc UpdateFile(stream UpdateFile_Request) returns (UpdateFile_Response){}
+     rpc UpdateFile(UpdateFile_Request) returns (UpdateFile_Response){}
      rpc ListFile(ListFile_Request) returns (ListFile_Response) {}
 }
 

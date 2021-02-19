@@ -59,7 +59,7 @@ class ContainerManagerStub(object):
                 request_serializer=Manage__pb2.GetFile_Request.SerializeToString,
                 response_deserializer=Manage__pb2.GetFile_Response.FromString,
                 )
-        self.UpdateFile = channel.stream_unary(
+        self.UpdateFile = channel.unary_unary(
                 '/ContainerManager/UpdateFile',
                 request_serializer=Manage__pb2.UpdateFile_Request.SerializeToString,
                 response_deserializer=Manage__pb2.UpdateFile_Response.FromString,
@@ -129,7 +129,7 @@ class ContainerManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def UpdateFile(self, request_iterator, context):
+    def UpdateFile(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -189,7 +189,7 @@ def add_ContainerManagerServicer_to_server(servicer, server):
                     request_deserializer=Manage__pb2.GetFile_Request.FromString,
                     response_serializer=Manage__pb2.GetFile_Response.SerializeToString,
             ),
-            'UpdateFile': grpc.stream_unary_rpc_method_handler(
+            'UpdateFile': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateFile,
                     request_deserializer=Manage__pb2.UpdateFile_Request.FromString,
                     response_serializer=Manage__pb2.UpdateFile_Response.SerializeToString,
@@ -363,7 +363,7 @@ class ContainerManager(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateFile(request_iterator,
+    def UpdateFile(request,
             target,
             options=(),
             channel_credentials=None,
@@ -373,7 +373,7 @@ class ContainerManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_unary(request_iterator, target, '/ContainerManager/UpdateFile',
+        return grpc.experimental.unary_unary(request, target, '/ContainerManager/UpdateFile',
             Manage__pb2.UpdateFile_Request.SerializeToString,
             Manage__pb2.UpdateFile_Response.FromString,
             options, channel_credentials,
