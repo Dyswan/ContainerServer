@@ -7,6 +7,16 @@ message ContainerAttr{
      string image = 4;
      string name = 5;
 }
+
+message ImageAttr{
+     string id = 1;
+     repeated string repoTags = 2;
+     string created = 3;
+     int64 size = 4; //以byte为单位
+     string author = 5;
+}
+
+
 message ListContainers_Request{}
 message ListContainers_Response{
      repeated ContainerAttr containers = 1;
@@ -105,7 +115,49 @@ message ListFile_Response{
      repeated FileStat files = 2;
 }
 
+message PruneImages_Request{}
+message PruneImages_Response{}
+
+message ListImages_Request{}
+message ListImages_Response{
+    repeated ImageAttr images = 1; 
+}
+
+message PullImage_Request{
+     string repository = 1;
+     string tag = 2; //tag为空时，默认为latest
+}
+message PullImage_Response{}
+
+message BuildImage_Request{
+     bytes dockerfile = 1;
+}
+message BuildImage_Response{}
+
+message LoadImage_Request{
+     string tag = 1;
+     bytes data = 2;
+}
+message LoadImage_Response{
+     string image_id = 1;
+}
+
+message GetImage_Request{
+     string image_id = 1;
+}
+message GetImage_Response{
+     ImageAttr image_attr = 1;
+}
+
+message RemoveImage_Request{
+     string image_id = 1;
+     bool force = 2;
+}
+message RemoveImage_Response{}
+
+
 service Manager{
+//Container utils
      rpc ListContainers(ListContainers_Request) returns (ListContainers_Response) {}
      rpc PruneContainers(PruneContainers_Request) returns (PruneContainers_Response) {}
 
@@ -120,13 +172,13 @@ service Manager{
      rpc GetFile(GetFile_Request) returns (stream GetFile_Response) {} 
      rpc UpdateFile(UpdateFile_Request) returns (UpdateFile_Response){}
      rpc ListFile(ListFile_Request) returns (ListFile_Response) {}
+//Image utils
+     rpc PruneImages(PruneImages_Request) returns (PruneImages_Response){}
+     rpc ListImages(ListImages_Request) returns (ListImages_Response){}
 
-     // rpc ListImages() returns (){}
-     // rpc PruneImages() returns (){}
-
-     // rpc PullImage() returns (){}
-     // rpc BuildImage() returns (){}
+     rpc PullImage(PullImage_Request) returns (PullImage_Response){}
+     rpc BuildImage(BuildImage_Request) returns (BuildImage_Response){}
      // rpc LoadImage() returns (){}
-     // rpc GetImage() returns (){}
-     // rpc RemoveImage() returns (){}
+     rpc GetImage(GetImage_Request) returns (GetImage_Response){}
+     rpc RemoveImage(RemoveImage_Request) returns (RemoveImage_Response){}
 }

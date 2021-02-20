@@ -69,13 +69,44 @@ class ManagerStub(object):
                 request_serializer=Manage__pb2.ListFile_Request.SerializeToString,
                 response_deserializer=Manage__pb2.ListFile_Response.FromString,
                 )
+        self.PruneImages = channel.unary_unary(
+                '/Manager/PruneImages',
+                request_serializer=Manage__pb2.PruneImages_Request.SerializeToString,
+                response_deserializer=Manage__pb2.PruneImages_Response.FromString,
+                )
+        self.ListImages = channel.unary_unary(
+                '/Manager/ListImages',
+                request_serializer=Manage__pb2.ListImages_Request.SerializeToString,
+                response_deserializer=Manage__pb2.ListImages_Response.FromString,
+                )
+        self.PullImage = channel.unary_unary(
+                '/Manager/PullImage',
+                request_serializer=Manage__pb2.PullImage_Request.SerializeToString,
+                response_deserializer=Manage__pb2.PullImage_Response.FromString,
+                )
+        self.BuildImage = channel.unary_unary(
+                '/Manager/BuildImage',
+                request_serializer=Manage__pb2.BuildImage_Request.SerializeToString,
+                response_deserializer=Manage__pb2.BuildImage_Response.FromString,
+                )
+        self.GetImage = channel.unary_unary(
+                '/Manager/GetImage',
+                request_serializer=Manage__pb2.GetImage_Request.SerializeToString,
+                response_deserializer=Manage__pb2.GetImage_Response.FromString,
+                )
+        self.RemoveImage = channel.unary_unary(
+                '/Manager/RemoveImage',
+                request_serializer=Manage__pb2.RemoveImage_Request.SerializeToString,
+                response_deserializer=Manage__pb2.RemoveImage_Response.FromString,
+                )
 
 
 class ManagerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def ListContainers(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Container utils
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -141,6 +172,44 @@ class ManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def PruneImages(self, request, context):
+        """Image utils
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListImages(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PullImage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BuildImage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetImage(self, request, context):
+        """rpc LoadImage() returns (){}
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveImage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -198,6 +267,36 @@ def add_ManagerServicer_to_server(servicer, server):
                     servicer.ListFile,
                     request_deserializer=Manage__pb2.ListFile_Request.FromString,
                     response_serializer=Manage__pb2.ListFile_Response.SerializeToString,
+            ),
+            'PruneImages': grpc.unary_unary_rpc_method_handler(
+                    servicer.PruneImages,
+                    request_deserializer=Manage__pb2.PruneImages_Request.FromString,
+                    response_serializer=Manage__pb2.PruneImages_Response.SerializeToString,
+            ),
+            'ListImages': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListImages,
+                    request_deserializer=Manage__pb2.ListImages_Request.FromString,
+                    response_serializer=Manage__pb2.ListImages_Response.SerializeToString,
+            ),
+            'PullImage': grpc.unary_unary_rpc_method_handler(
+                    servicer.PullImage,
+                    request_deserializer=Manage__pb2.PullImage_Request.FromString,
+                    response_serializer=Manage__pb2.PullImage_Response.SerializeToString,
+            ),
+            'BuildImage': grpc.unary_unary_rpc_method_handler(
+                    servicer.BuildImage,
+                    request_deserializer=Manage__pb2.BuildImage_Request.FromString,
+                    response_serializer=Manage__pb2.BuildImage_Response.SerializeToString,
+            ),
+            'GetImage': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetImage,
+                    request_deserializer=Manage__pb2.GetImage_Request.FromString,
+                    response_serializer=Manage__pb2.GetImage_Response.SerializeToString,
+            ),
+            'RemoveImage': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveImage,
+                    request_deserializer=Manage__pb2.RemoveImage_Request.FromString,
+                    response_serializer=Manage__pb2.RemoveImage_Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -393,5 +492,107 @@ class Manager(object):
         return grpc.experimental.unary_unary(request, target, '/Manager/ListFile',
             Manage__pb2.ListFile_Request.SerializeToString,
             Manage__pb2.ListFile_Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PruneImages(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Manager/PruneImages',
+            Manage__pb2.PruneImages_Request.SerializeToString,
+            Manage__pb2.PruneImages_Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListImages(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Manager/ListImages',
+            Manage__pb2.ListImages_Request.SerializeToString,
+            Manage__pb2.ListImages_Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PullImage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Manager/PullImage',
+            Manage__pb2.PullImage_Request.SerializeToString,
+            Manage__pb2.PullImage_Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def BuildImage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Manager/BuildImage',
+            Manage__pb2.BuildImage_Request.SerializeToString,
+            Manage__pb2.BuildImage_Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetImage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Manager/GetImage',
+            Manage__pb2.GetImage_Request.SerializeToString,
+            Manage__pb2.GetImage_Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RemoveImage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Manager/RemoveImage',
+            Manage__pb2.RemoveImage_Request.SerializeToString,
+            Manage__pb2.RemoveImage_Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

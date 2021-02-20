@@ -7,6 +7,7 @@ from utils import ContainerUtils, ImageUtils
 import grpc
 import Manage_pb2 as Manager
 import Manage_pb2_grpc as Manager_grpc
+from tempfile import TemporaryFile, NamedTemporaryFile
 
 def GenerateData(List):
     for message in List:
@@ -96,9 +97,6 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
             return Manager.UpdateFile_Response(\
                 exit_code=Manager.UpdateFile_Response.ExitCode.FILE_IS_NOT_EXIST)
         
-
-
-    
     def ListFile(self, request ,context):
         cmd = ["ls", "-Al", request.path]
         exit_code, output = ContainerUtils.ExecCommand(request.container_id, cmd)
@@ -124,11 +122,48 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
             response.exit_code = Manager.ListFile_Response.ExitCode.SERIOUS_TROUBLE
         return response
     
+    def PruneImages(self, request, context):
+        ImageUtils.PruneImages()
+        return Manager.PruneImages_Response()
 
+    def ListImages(self, request, context):
+        List = ImageUtils.ListImages()
+        response = Manager.ListImages_Response()
+        for image in List:
+            attr = response.images.add()
+            attr.id = image['Id']
+            for tag in image['RepoTags']:
+                temp = attr.repoTags.add()
+                temp = tag
+            attr.created = image['Created']
+            attr.size = int(image['Size'])
+            attr.author = image['Author']
+        return response
 
+    def PullImage(self, request, context):
+        if request.tag == '':
+            request.tag = 'latest'
+        ImageUtils.PullImage(repository = request.repository,tag = request.tag)
+        return Manager.PullImage_Response()
     
-        
-if __name__=="__main__":
+    def BuildImage(self, request, context):
+        dockerfile = TemporaryFile(mode="wb")
+        dockerfile.write(request.data)
+        ImageUtils.BuildImageByFile(dockerfile, request.tag)
+    
+    def GetImage(self, request, context):
+        image = ImageUtils.GetImage(image_id = request.image_id)
+        response = Manager.GetImage_Response()
+        response.image_attr.id = image['Id']
+        for tag in image['RepoTags']:
+            temp = response.image_attr.repoTags.add()
+            temp = tag
+        response.image_attr.created = image['Created']
+        response.image_attr.size = int(image['Size'])
+        response.image_attr.author = image['Author']
+
+
+if __name__=="__main__":  
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=4))
     Manager_grpc.add_ManagerServicer_to_server(
         ManagerHandler(), server)
