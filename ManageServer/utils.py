@@ -79,7 +79,16 @@ class ContainerUtils:
     def RestartContainer(container_id):
         container = DOCKERCLIENT.containers.get(container_id)
         container.restart()
-
+    
+    @staticmethod
+    def CommitContainer(container_id, repository, tag=None, author=None):
+        container = DOCKERCLIENT.containers.get(container_id)
+        container.commit(\
+            repository=repository,
+            tag = tag,
+            author = author
+        )
+    
     @staticmethod 
     def GetArchive(container_id, path, chunk_size=2097152):
         container = DOCKERCLIENT.containers.get(container_id)

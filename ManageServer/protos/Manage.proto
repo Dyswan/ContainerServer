@@ -16,6 +16,10 @@ message ImageAttr{
      string author = 5;
 }
 
+message AuthConfig{
+     string username = 1;
+     string password = 2;
+}
 
 message ListContainers_Request{}
 message ListContainers_Response{
@@ -126,6 +130,7 @@ message ListImages_Response{
 message PullImage_Request{
      string repository = 1;
      string tag = 2; //tag为空时，默认为latest
+     AuthConfig auth_config = 3;
 }
 message PullImage_Response{}
 

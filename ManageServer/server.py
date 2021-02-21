@@ -143,7 +143,12 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
     def PullImage(self, request, context):
         if request.tag == '':
             request.tag = 'latest'
-        ImageUtils.PullImage(repository = request.repository,tag = request.tag)
+        auth_config = None
+        if request.auth_config is not None:
+            auth_config = {}
+            auth_config['username'] = request.auth_config.username
+            auth_config['password'] = request.auth_config.password
+        ImageUtils.PullImage(repository = request.repository,tag = request.tag, auth_config = auth_config)
         return Manager.PullImage_Response()
     
     def BuildImage(self, request, context):
