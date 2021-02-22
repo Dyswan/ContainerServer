@@ -140,11 +140,10 @@ message BuildImage_Request{
 message BuildImage_Response{}
 
 message LoadImage_Request{
-     string tag = 1;
-     bytes data = 2;
+     bytes data = 1;
 }
 message LoadImage_Response{
-     string image_id = 1;
+     repeated string image_id = 1;
 }
 
 message GetImage_Request{
@@ -183,7 +182,7 @@ service Manager{
 
      rpc PullImage(PullImage_Request) returns (PullImage_Response){}
      rpc BuildImage(BuildImage_Request) returns (BuildImage_Response){}
-     // rpc LoadImage() returns (){}
+     rpc LoadImage(stream LoadImage_Request) returns (LoadImage_Response){}
      rpc GetImage(GetImage_Request) returns (GetImage_Response){}
      rpc RemoveImage(RemoveImage_Request) returns (RemoveImage_Response){}
 }

@@ -147,11 +147,10 @@ class ImageUtils:
 
     @staticmethod
     def LoadImage(data):
-        DOCKERCLIENT.images.load(data)
+        return DOCKERCLIENT.images.load(data)
 
     @staticmethod
     def GetImage(image_id):
-    # image_id 可以是id也可以是name
         ret = {}
         temp = DOCKERCLIENT.images.get(image_id)
         for x in temp.attrs:
@@ -177,27 +176,4 @@ class ImageUtils:
 
 
 if __name__ == '__main__':
-    # print(GetContainer('test'))
-    # print(GetImage('judger:v1.0'))
-    # container = DOCKERCLIENT.containers.get('test')
-    # exit_code, output = container.exec_run(
-    #     cmd=["stat","-c","%Y","/etc/apt/sources.list"]
-    # )
-    # print(str(output, encoding='utf-8'),end="")
-    # ContainerUtils.GetFileStat('container1', '/etc/apt/sour')
-    old = [1,[1,2,3],3]
-    new = old.copy()
-    print('Before:')
-    print(old)
-    print(new)
-    new[0] = 3
-    new[1][0] =3
-    print('After:')
-    print(old)
-    print(new)
-    # List = output.split('\n')[1:]
-    # for file in List:
-    #     temp = file.split(' ')
-    #     stat = temp[0]
-    #     filename = temp[-1]
-    #     print(stat, filename)
+    pass

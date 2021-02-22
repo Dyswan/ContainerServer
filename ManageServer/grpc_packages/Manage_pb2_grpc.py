@@ -89,6 +89,11 @@ class ManagerStub(object):
                 request_serializer=Manage__pb2.BuildImage_Request.SerializeToString,
                 response_deserializer=Manage__pb2.BuildImage_Response.FromString,
                 )
+        self.LoadImage = channel.stream_unary(
+                '/Manager/LoadImage',
+                request_serializer=Manage__pb2.LoadImage_Request.SerializeToString,
+                response_deserializer=Manage__pb2.LoadImage_Response.FromString,
+                )
         self.GetImage = channel.unary_unary(
                 '/Manager/GetImage',
                 request_serializer=Manage__pb2.GetImage_Request.SerializeToString,
@@ -197,9 +202,14 @@ class ManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def LoadImage(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetImage(self, request, context):
-        """rpc LoadImage() returns (){}
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -287,6 +297,11 @@ def add_ManagerServicer_to_server(servicer, server):
                     servicer.BuildImage,
                     request_deserializer=Manage__pb2.BuildImage_Request.FromString,
                     response_serializer=Manage__pb2.BuildImage_Response.SerializeToString,
+            ),
+            'LoadImage': grpc.stream_unary_rpc_method_handler(
+                    servicer.LoadImage,
+                    request_deserializer=Manage__pb2.LoadImage_Request.FromString,
+                    response_serializer=Manage__pb2.LoadImage_Response.SerializeToString,
             ),
             'GetImage': grpc.unary_unary_rpc_method_handler(
                     servicer.GetImage,
@@ -560,6 +575,23 @@ class Manager(object):
         return grpc.experimental.unary_unary(request, target, '/Manager/BuildImage',
             Manage__pb2.BuildImage_Request.SerializeToString,
             Manage__pb2.BuildImage_Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def LoadImage(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/Manager/LoadImage',
+            Manage__pb2.LoadImage_Request.SerializeToString,
+            Manage__pb2.LoadImage_Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

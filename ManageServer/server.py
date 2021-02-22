@@ -155,6 +155,17 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
         dockerfile = TemporaryFile(mode="wb")
         dockerfile.write(request.data)
         ImageUtils.BuildImageByFile(dockerfile, request.tag)
+        return Manager.BuildImage_Response()
+
+
+    def LoadImage(self, request, context):
+        g = GenerateData(request)
+        List = ImageUtils.LoadImage(g)
+        response = Manager.LoadImage_Response()
+        for image in List:
+            temp = response.image_id.add()
+            temp = image.id
+        return response
     
     def GetImage(self, request, context):
         image = ImageUtils.GetImage(image_id = request.image_id)
@@ -166,6 +177,7 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
         response.image_attr.created = image['Created']
         response.image_attr.size = int(image['Size'])
         response.image_attr.author = image['Author']
+        return response
 
 
 if __name__=="__main__":  
