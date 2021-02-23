@@ -27,14 +27,12 @@ def GenerateData(List):
         yield temp
 def run():
     # 使用with语法保证channel自动close
-    with grpc.insecure_channel('localhost:8666') as channel:
+    with grpc.insecure_channel('0.0.0.0:8666') as channel:
         # 客户端通过stub来实现rpc通信
         stub = Manager_grpc.ManagerStub(channel)
-        request = Manager.PullImage_Request(\
-            repository = 'python'
-            )
+        request = Manager.ListImages_Request()
         # 客户端必须使用定义好的类型，这里是HelloRequest类型
-        response = stub.PullImage(request)
+        response = stub.ListImages(request)
         print ("hello client received: " )
 # 1613637295
 if __name__ == "__main__":

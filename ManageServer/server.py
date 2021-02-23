@@ -29,22 +29,22 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
             attr.created = container['Created']
             attr.status = container['Status']
             attr.image = container['Image']
-            attr.Name = container['Name']
+            attr.name = container['Name']
         return response
     
     def GetContainer(self, request, context):
         ret = ContainerUtils.GetContainer(request.container_id)
-        attr = Manager.GetArchive_Response()
+        attr = Manager.GetContainer_Response()
         attr.id = container['Id']
         attr.created = container['Created']
         attr.status = container['Status']
         attr.image = container['Image']
-        attr.Name = container['Name']
+        attr.name = container['Name']
         return attr
     
     def CreateContainer(self, request, context):
         ret = ContainerUtils.CreateContainer(image_id= request.image_id,
-                                             mount_path = "/workplace/{username}/{container_name}".format(username=request.username,container_name=request.container_name),
+                                             mount_path = "/workplace/{username}/mount".format(username=request.username),
                                              container_name = request.container_name)
         container = Manager.CreateContainer_Response()
         container.container_id = ret
@@ -133,8 +133,7 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
             attr = response.images.add()
             attr.id = image['Id']
             for tag in image['RepoTags']:
-                temp = attr.repoTags.add()
-                temp = tag
+                attr.repoTags.append(tag)
             attr.created = image['Created']
             attr.size = int(image['Size'])
             attr.author = image['Author']

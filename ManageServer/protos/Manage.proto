@@ -185,4 +185,7 @@ service Manager{
      rpc LoadImage(stream LoadImage_Request) returns (LoadImage_Response){}
      rpc GetImage(GetImage_Request) returns (GetImage_Response){}
      rpc RemoveImage(RemoveImage_Request) returns (RemoveImage_Response){}
+
+//BackupUtils
+     
 }

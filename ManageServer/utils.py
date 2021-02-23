@@ -1,10 +1,15 @@
 import docker
 import os
+import tarfile
 import re
+import requests
 
 DOCKERCLIENT = docker.from_env()
 CONTAINER_ATTRS = [['Id'], ['Created'], ['State', 'Status'], ['Image'], ['Name']]
 IMAGE_ATTRS = [['Id'], ['RepoTags'], ['Created'], ['Size'], ['Author']]
+
+
+
 
 class ContainerUtils:
     @staticmethod
@@ -13,10 +18,10 @@ class ContainerUtils:
 
     @staticmethod
     def ListContainers():
-        ret = {}
+        ret = []
         List = DOCKERCLIENT.containers.list()
         for container in List:
-            ret[container.id] = ContainerUtils.GetContainer(container.id)
+            ret.append(ContainerUtils.GetContainer(container.id))
         return ret
 
     @staticmethod
@@ -56,7 +61,7 @@ class ContainerUtils:
             name = container_name,
             mounts=[
                 docker.types.Mount(
-                    target = '/workplace',
+                    target = '/mnt',
                     source = mount_path,
                     type = 'bind'
                 )
@@ -127,10 +132,10 @@ class ImageUtils:
 
     @staticmethod
     def ListImages():
-        ret = {}
+        ret = []
         List = DOCKERCLIENT.images.list()
         for container in List:
-            ret[container.id] = ImageUtils.GetImage(container.id)
+            ret.append(ImageUtils.GetImage(container.id))
         return ret
 
     @staticmethod
@@ -153,8 +158,8 @@ class ImageUtils:
     def GetImage(image_id):
         ret = {}
         temp = DOCKERCLIENT.images.get(image_id)
-        for x in temp.attrs:
-            print(x)
+        # for x in temp.attrs:
+        #     print(x)
         for attr in IMAGE_ATTRS:
             it = iter(attr)
             key = None
@@ -174,6 +179,25 @@ class ImageUtils:
     def RemoveImage(image_id, force = False):
         DOCKERCLIENT.images.remove(image_id, force=force)
 
+# def tarFile(output_filename, source_dir):
+#     with tarfile.open(output_filename, "w:gz") as tar:
+#         tar.add(source_dir, arcname=os.path.basename(source_dir)
+
+def ExportFile(username, url):
+    path = "/workplace/{username}/mount.tar".format(username=username)
+    url = 'http://111.230.172.240:7777/upload'
+    files = {'file':open('test.cpp','r')}
+    response = requests.post(url,files = files)
+
+def ImportFile(username, url):
+    # path = 'get.cpp'
+    path = "/workplace/{username}/mount.tar".format(username=username)
+    response = requests.get(url)
+    file = open(path,"w")
+    file.write(response.text)
+    file.close()
 
 if __name__ == '__main__':
-    pass
+    url = 'http://111.230.172.240:7777/download?filepath=ggb.png'
+    ImportFile(username='', url='http://111.230.172.240:7777/download?filepath=test.cpp')
+    
