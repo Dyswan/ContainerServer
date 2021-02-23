@@ -30,9 +30,9 @@ def run():
     with grpc.insecure_channel('0.0.0.0:8666') as channel:
         # 客户端通过stub来实现rpc通信
         stub = Manager_grpc.ManagerStub(channel)
-        request = Manager.ListImages_Request()
+        request = Manager.ListContainers_Request()
         # 客户端必须使用定义好的类型，这里是HelloRequest类型
-        response = stub.ListImages(request)
+        response = stub.ListContainers(request=request)
         print ("hello client received: " )
 # 1613637295
 if __name__ == "__main__":

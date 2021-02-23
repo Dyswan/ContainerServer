@@ -1,9 +1,17 @@
 syntax = "proto3";
 
 message ContainerAttr{
+     enum ContainerStatus{
+          Running = 0;
+          Paused = 1;
+          Restarting = 2;
+          OOMKilled = 3;
+          Dead = 4;
+          UNKNOWN = 5; 
+     }
      string id = 1;
      string created = 2;
-     string status = 3;
+     ContainerStatus status = 3;
      string image = 4;
      string name = 5;
 }

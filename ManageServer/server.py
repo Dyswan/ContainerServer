@@ -13,6 +13,21 @@ def GenerateData(List):
     for message in List:
         yield message.data
 
+def GetContainerStatus(Dict):
+    if Dict['Running']:
+        return Manager.ContainerAttr.ContainerStatus.Running
+    elif Dict['Paused']:
+        return Manager.ContainerAttr.ContainerStatus.Paused
+    elif Dict['Restarting']:
+        return Manager.ContainerAttr.ContainerStatus.Restarting
+    elif Dict['OOMKilled']:
+        return Manager.ContainerAttr.ContainerStatus.OOMKilled
+    elif Dict['Dead']:
+        return Manager.ContainerAttr.ContainerStatus.Dead
+    else:
+        return Manager.ContainerAttr.ContainerStatus.UNKNOWN
+
+
 class ManagerHandler(Manager_grpc.ManagerServicer ):
     def __init__(self):
         pass
@@ -27,20 +42,20 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
             attr = response.containers.add()
             attr.id = container['Id']
             attr.created = container['Created']
-            attr.status = container['Status']
+            attr.status = GetContainerStatus(container['State'])
             attr.image = container['Image']
             attr.name = container['Name']
         return response
     
     def GetContainer(self, request, context):
-        ret = ContainerUtils.GetContainer(request.container_id)
-        attr = Manager.GetContainer_Response()
-        attr.id = container['Id']
-        attr.created = container['Created']
-        attr.status = container['Status']
-        attr.image = container['Image']
-        attr.name = container['Name']
-        return attr
+        container = ContainerUtils.GetContainer(request.container_id)
+        response = Manager.GetContainer_Response()
+        response.container_attr.id = container['Id']
+        response.container_attr.created = container['Created']
+        response.container_attr.status = GetContainerStatus(container['State'])
+        response.container_attr.image = container['Image']
+        response.container_attr.name = container['Name']
+        return response
     
     def CreateContainer(self, request, context):
         ret = ContainerUtils.CreateContainer(image_id= request.image_id,

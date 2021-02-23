@@ -5,7 +5,7 @@ import re
 import requests
 
 DOCKERCLIENT = docker.from_env()
-CONTAINER_ATTRS = [['Id'], ['Created'], ['State', 'Status'], ['Image'], ['Name']]
+CONTAINER_ATTRS = [['Id'], ['Created'], ['State'], ['Image'], ['Name']]
 IMAGE_ATTRS = [['Id'], ['RepoTags'], ['Created'], ['Size'], ['Author']]
 
 
@@ -198,6 +198,5 @@ def ImportFile(username, url):
     file.close()
 
 if __name__ == '__main__':
-    url = 'http://111.230.172.240:7777/download?filepath=ggb.png'
-    ImportFile(username='', url='http://111.230.172.240:7777/download?filepath=test.cpp')
-    
+    container = DOCKERCLIENT.containers.get('container1')
+    print(container.attrs['State'])
