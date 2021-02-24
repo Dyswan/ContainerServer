@@ -5,7 +5,7 @@ import re
 import requests
 
 DOCKERCLIENT = docker.from_env()
-CONTAINER_ATTRS = [['Id'], ['Created'], ['State'], ['Image'], ['Name']]
+CONTAINER_ATTRS = [['Id'], ['Created'], ['State','Status'], ['Image'], ['Name']]
 IMAGE_ATTRS = [['Id'], ['RepoTags'], ['Created'], ['Size'], ['Author']]
 
 
@@ -17,9 +17,9 @@ class ContainerUtils:
         DOCKERCLIENT.containers.prune()
 
     @staticmethod
-    def ListContainers():
+    def ListContainers(all = False):
         ret = []
-        List = DOCKERCLIENT.containers.list()
+        List = DOCKERCLIENT.containers.list(all = True)
         for container in List:
             ret.append(ContainerUtils.GetContainer(container.id))
         return ret
@@ -199,4 +199,4 @@ def ImportFile(username, url):
 
 if __name__ == '__main__':
     container = DOCKERCLIENT.containers.get('container1')
-    print(container.attrs['State'])
+    print(container.status)

@@ -13,17 +13,21 @@ def GenerateData(List):
     for message in List:
         yield message.data
 
-def GetContainerStatus(Dict):
-    if Dict['Running']:
-        return Manager.ContainerAttr.ContainerStatus.Running
-    elif Dict['Paused']:
-        return Manager.ContainerAttr.ContainerStatus.Paused
-    elif Dict['Restarting']:
-        return Manager.ContainerAttr.ContainerStatus.Restarting
-    elif Dict['OOMKilled']:
-        return Manager.ContainerAttr.ContainerStatus.OOMKilled
-    elif Dict['Dead']:
-        return Manager.ContainerAttr.ContainerStatus.Dead
+def GetContainerStatus(Status):
+    if Status == 'created':
+        return Manager.ContainerAttr.ContainerStatus.CREATED
+    elif Status == 'restarting':
+        return Manager.ContainerAttr.ContainerStatus.RESTARTING
+    elif Status == 'running':
+        return Manager.ContainerAttr.ContainerStatus.RUNNING
+    elif Status == 'removing':
+        return Manager.ContainerAttr.ContainerStatus.REMOVING
+    elif Status == 'paused':
+        return Manager.ContainerAttr.ContainerStatus.PAUSED
+    elif Status == 'exited':
+        return Manager.ContainerAttr.ContainerStatus.EXITED
+    elif Status == 'dead':
+        return Manager.ContainerAttr.ContainerStatus.DEAD
     else:
         return Manager.ContainerAttr.ContainerStatus.UNKNOWN
 
@@ -42,7 +46,7 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
             attr = response.containers.add()
             attr.id = container['Id']
             attr.created = container['Created']
-            attr.status = GetContainerStatus(container['State'])
+            attr.status = GetContainerStatus(container['Status'])
             attr.image = container['Image']
             attr.name = container['Name']
         return response
@@ -58,19 +62,17 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
         return response
     
     def CreateContainer(self, request, context):
-        ret = ContainerUtils.CreateContainer(image_id= request.image_id,
+        container_id = ContainerUtils.CreateContainer(image_id= request.image_id,
                                              mount_path = "/workplace/{username}/mount".format(username=request.username),
                                              container_name = request.container_name)
-        container = Manager.CreateContainer_Response()
-        container.container_id = ret
-        return container
+        return Manager.CreateContainer_Response(container_id = container_id)
     
     def StopContainer(self, request, context):
         ContainerUtils.StopContainer(request.container_id)
         return Manager.StopContainer_Response()
     
     def RemoveContainer(self, request, context):
-        ContainerUtils.StopContainer(request.container_id, request.force)
+        ContainerUtils.RemoveContainer(request.container_id, request.force)
         return Manager.RemoveContainer_Response()
 
     def RestartContainer(self, request, context):
@@ -192,6 +194,10 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
         response.image_attr.size = int(image['Size'])
         response.image_attr.author = image['Author']
         return response
+
+    def RemoveImage(self, request, context):
+        ImageUtils.RemoveImage(image_id = request.image_id, force = request.force)
+        return Manager.RemoveImage_Response()
 
 
 if __name__=="__main__":  
