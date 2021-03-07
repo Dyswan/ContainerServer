@@ -41,7 +41,7 @@ class ContainerUtils:
             ret[key] = value
         return ret
     @staticmethod
-    def CreateContainer(image_id, mount_path, container_name):
+    def CreateContainer(image_id, mount_path, container_name, hostname = None):
         if not os.path.exists(mount_path):
             os.makedirs(mount_path)
         
@@ -59,6 +59,7 @@ class ContainerUtils:
             tty = True,
             stdin_open = True,
             name = container_name,
+            hostname = hostname,
             mounts=[
                 docker.types.Mount(
                     target = '/mnt',
@@ -198,5 +199,13 @@ def ImportFile(username, url):
     file.close()
 
 if __name__ == '__main__':
-    container = DOCKERCLIENT.containers.get('container1')
-    print(container.status)
+    # ContainerUtils.CreateContainer(\
+    #     image_id='ubuntu:18.04',
+    #     mount_path='/workplace/test',
+    #     container_name='container2',
+    #     hostname='admin'
+    #     )
+    try:
+        ContainerUtils.GetContainer('container109')
+    except docker.errors.APIError:
+        print("-->NotFind")

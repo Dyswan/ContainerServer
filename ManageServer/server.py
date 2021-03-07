@@ -4,7 +4,7 @@ sys.path.append('./grpc_packages')
 
 from concurrent import futures
 from utils import ContainerUtils, ImageUtils
-import grpc
+import grpc, docker
 import Manage_pb2 as Manager
 import Manage_pb2_grpc as Manager_grpc
 from tempfile import TemporaryFile, NamedTemporaryFile
@@ -52,8 +52,13 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
         return response
     
     def GetContainer(self, request, context):
-        container = ContainerUtils.GetContainer(request.container_id)
         response = Manager.GetContainer_Response()
+        try:
+            container = ContainerUtils.GetContainer(request.container_id)
+        except docker.errors.APIError:
+            response.exit_code = Manager.GetContainer_Response.ExitCode.NOTFOUND
+            return response
+        response.exit_code = Manager.GetContainer_Response.ExitCode.SUCCESS
         response.container_attr.id = container['Id']
         response.container_attr.created = container['Created']
         response.container_attr.status = GetContainerStatus(container['State'])
@@ -64,6 +69,7 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
     def CreateContainer(self, request, context):
         container_id = ContainerUtils.CreateContainer(image_id= request.image_id,
                                              mount_path = "/workplace/{username}/mount".format(username=request.username),
+                                             hostname = request.username,
                                              container_name = request.container_name)
         return Manager.CreateContainer_Response(container_id = container_id)
     
@@ -184,8 +190,13 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
         return response
     
     def GetImage(self, request, context):
-        image = ImageUtils.GetImage(image_id = request.image_id)
         response = Manager.GetImage_Response()
+        try:
+            image = ImageUtils.GetImage(image_id = request.image_id)
+        except docker.errors.ImageNotFound:
+            response.exit_code = Manager.GetImage_Response.ExitCode.NOTFOUND
+            return response
+        response.exit_code = Manager.GetImage_Response.ExitCode.SUCCESS
         response.image_attr.id = image['Id']
         for tag in image['RepoTags']:
             temp = response.image_attr.repoTags.add()

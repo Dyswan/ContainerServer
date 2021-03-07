@@ -43,7 +43,12 @@ message GetContainer_Request{
      string container_id = 1;
 }
 message GetContainer_Response{
-     ContainerAttr container_attr = 1;
+     enum ExitCode{
+          SUCCESS = 0;
+          NOTFOUND = 1;
+     }
+     ExitCode exit_code = 1;
+     ContainerAttr container_attr = 2;
 }
 
 message StartContainer_Request{
@@ -73,7 +78,7 @@ message CreateContainer_Request{
      string container_name = 3;
 }
 message CreateContainer_Response{
-     string container_id = 1;
+     ContainerAttr container_attr = 1;
 }
 
 message GetFile_Request{
@@ -160,6 +165,10 @@ message GetImage_Request{
      string image_id = 1;
 }
 message GetImage_Response{
+     enum ExitCode{
+          SUCCESS = 0;
+          NOTFOUND = 1;
+     }
      ImageAttr image_attr = 1;
 }
 
@@ -197,5 +206,4 @@ service Manager{
      rpc RemoveImage(RemoveImage_Request) returns (RemoveImage_Response){}
 
 //BackupUtils
-     
 }

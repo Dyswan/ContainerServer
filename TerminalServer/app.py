@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sockets import Sockets
 from utility.myDocker import ClientHandler, DockerStreamThread
 import conf
@@ -12,6 +12,8 @@ def index():
 
 @sockets.route('/echo/<containerId>')
 def echo_socket(ws, containerId):
+    temp = request.args.get("key")
+    print(temp)
     dockerCli = ClientHandler(base_url=conf.DOCKER_HOST, timeout=30)
     terminalExecId = dockerCli.creatTerminalExec(containerId)
     terminalStream = dockerCli.startTerminalExec(terminalExecId)._sock

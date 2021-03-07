@@ -1,0 +1,224 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/requests/models.py", line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.40/containers/container1/exec
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/gevent/pywsgi.py", line 999, in handle_one_response
+    self.run_application()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 75, in run_application
+    self.run_websocket()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 52, in run_websocket
+    list(self.application(self.environ, lambda s, h, e=None: []))
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask_sockets.py", line 45, in __call__
+    handler(environment, **values)
+  File "app.py", line 16, in echo_socket
+    terminalExecId = dockerCli.creatTerminalExec(containerId)
+  File "/home/ubuntu/ContainerServer/TerminalServer/utility/myDocker.py", line 22, in creatTerminalExec
+    execId = self.dockerClient.exec_create(containerId, execCommand, **execOptions)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/utils/decorators.py", line 19, in wrapped
+    return f(self, resource_id, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/exec_api.py", line 80, in exec_create
+    return self._result(res, True)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 274, in _result
+    self._raise_for_status(response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/errors.py", line 31, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation)
+docker.errors.APIError: 409 Client Error for http+docker://localhost/v1.40/containers/container1/exec: Conflict ("Container feee5a65fbd9960d2b0e6407cd911bf49b3cdf99009638fca24214bfde68d757 is not running")
+2021-02-28T10:02:03Z {'REMOTE_ADDR': '183.63.159.61', 'REMOTE_PORT': '3149', 'HTTP_HOST': '193.112.177.167:8000', (hidden keys: 31)} failed with APIError
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/requests/models.py", line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.40/containers/container1/exec
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/gevent/pywsgi.py", line 999, in handle_one_response
+    self.run_application()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 75, in run_application
+    self.run_websocket()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 52, in run_websocket
+    list(self.application(self.environ, lambda s, h, e=None: []))
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask_sockets.py", line 45, in __call__
+    handler(environment, **values)
+  File "app.py", line 16, in echo_socket
+    terminalExecId = dockerCli.creatTerminalExec(containerId)
+  File "/home/ubuntu/ContainerServer/TerminalServer/utility/myDocker.py", line 22, in creatTerminalExec
+    execId = self.dockerClient.exec_create(containerId, execCommand, **execOptions)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/utils/decorators.py", line 19, in wrapped
+    return f(self, resource_id, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/exec_api.py", line 80, in exec_create
+    return self._result(res, True)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 274, in _result
+    self._raise_for_status(response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/errors.py", line 31, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation)
+docker.errors.APIError: 409 Client Error for http+docker://localhost/v1.40/containers/container1/exec: Conflict ("Container feee5a65fbd9960d2b0e6407cd911bf49b3cdf99009638fca24214bfde68d757 is not running")
+2021-02-28T10:02:08Z {'REMOTE_ADDR': '183.63.159.61', 'REMOTE_PORT': '3165', 'HTTP_HOST': '193.112.177.167:8000', (hidden keys: 31)} failed with APIError
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/requests/models.py", line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.40/containers/container1/exec
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/gevent/pywsgi.py", line 999, in handle_one_response
+    self.run_application()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 75, in run_application
+    self.run_websocket()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 52, in run_websocket
+    list(self.application(self.environ, lambda s, h, e=None: []))
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask_sockets.py", line 45, in __call__
+    handler(environment, **values)
+  File "app.py", line 16, in echo_socket
+    terminalExecId = dockerCli.creatTerminalExec(containerId)
+  File "/home/ubuntu/ContainerServer/TerminalServer/utility/myDocker.py", line 22, in creatTerminalExec
+    execId = self.dockerClient.exec_create(containerId, execCommand, **execOptions)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/utils/decorators.py", line 19, in wrapped
+    return f(self, resource_id, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/exec_api.py", line 80, in exec_create
+    return self._result(res, True)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 274, in _result
+    self._raise_for_status(response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/errors.py", line 31, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation)
+docker.errors.APIError: 409 Client Error for http+docker://localhost/v1.40/containers/container1/exec: Conflict ("Container feee5a65fbd9960d2b0e6407cd911bf49b3cdf99009638fca24214bfde68d757 is not running")
+2021-02-28T10:02:15Z {'REMOTE_ADDR': '183.63.159.61', 'REMOTE_PORT': '6911', 'HTTP_HOST': '193.112.177.167:8000', (hidden keys: 31)} failed with APIError
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/requests/models.py", line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.40/containers/container1/exec
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/gevent/pywsgi.py", line 999, in handle_one_response
+    self.run_application()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 75, in run_application
+    self.run_websocket()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 52, in run_websocket
+    list(self.application(self.environ, lambda s, h, e=None: []))
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask_sockets.py", line 45, in __call__
+    handler(environment, **values)
+  File "app.py", line 16, in echo_socket
+    terminalExecId = dockerCli.creatTerminalExec(containerId)
+  File "/home/ubuntu/ContainerServer/TerminalServer/utility/myDocker.py", line 22, in creatTerminalExec
+    execId = self.dockerClient.exec_create(containerId, execCommand, **execOptions)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/utils/decorators.py", line 19, in wrapped
+    return f(self, resource_id, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/exec_api.py", line 80, in exec_create
+    return self._result(res, True)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 274, in _result
+    self._raise_for_status(response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/errors.py", line 31, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation)
+docker.errors.APIError: 409 Client Error for http+docker://localhost/v1.40/containers/container1/exec: Conflict ("Container feee5a65fbd9960d2b0e6407cd911bf49b3cdf99009638fca24214bfde68d757 is not running")
+2021-02-28T10:02:20Z {'REMOTE_ADDR': '183.63.159.61', 'REMOTE_PORT': '6925', 'HTTP_HOST': '193.112.177.167:8000', (hidden keys: 31)} failed with APIError
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/requests/models.py", line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.40/containers/container1/exec
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/gevent/pywsgi.py", line 999, in handle_one_response
+    self.run_application()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 75, in run_application
+    self.run_websocket()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 52, in run_websocket
+    list(self.application(self.environ, lambda s, h, e=None: []))
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask_sockets.py", line 45, in __call__
+    handler(environment, **values)
+  File "app.py", line 16, in echo_socket
+    terminalExecId = dockerCli.creatTerminalExec(containerId)
+  File "/home/ubuntu/ContainerServer/TerminalServer/utility/myDocker.py", line 22, in creatTerminalExec
+    execId = self.dockerClient.exec_create(containerId, execCommand, **execOptions)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/utils/decorators.py", line 19, in wrapped
+    return f(self, resource_id, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/exec_api.py", line 80, in exec_create
+    return self._result(res, True)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 274, in _result
+    self._raise_for_status(response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/errors.py", line 31, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation)
+docker.errors.APIError: 409 Client Error for http+docker://localhost/v1.40/containers/container1/exec: Conflict ("Container feee5a65fbd9960d2b0e6407cd911bf49b3cdf99009638fca24214bfde68d757 is not running")
+2021-02-28T10:02:20Z {'REMOTE_ADDR': '183.63.159.61', 'REMOTE_PORT': '6926', 'HTTP_HOST': '193.112.177.167:8000', (hidden keys: 31)} failed with APIError
+
+<gevent._socket3.socket at 0x7f246a76de18 object, fd=6, family=2, type=2049, proto=0>: Invalid http version: '\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00\n'
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/requests/models.py", line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.40/containers/test/exec
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/gevent/pywsgi.py", line 999, in handle_one_response
+    self.run_application()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 75, in run_application
+    self.run_websocket()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/geventwebsocket/handler.py", line 52, in run_websocket
+    list(self.application(self.environ, lambda s, h, e=None: []))
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/flask_sockets.py", line 45, in __call__
+    handler(environment, **values)
+  File "app.py", line 16, in echo_socket
+    terminalExecId = dockerCli.creatTerminalExec(containerId)
+  File "/home/ubuntu/ContainerServer/TerminalServer/utility/myDocker.py", line 22, in creatTerminalExec
+    execId = self.dockerClient.exec_create(containerId, execCommand, **execOptions)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/utils/decorators.py", line 19, in wrapped
+    return f(self, resource_id, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/exec_api.py", line 80, in exec_create
+    return self._result(res, True)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 274, in _result
+    self._raise_for_status(response)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/docker/errors.py", line 31, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation)
+docker.errors.APIError: 409 Client Error for http+docker://localhost/v1.40/containers/test/exec: Conflict ("Container 206029ccfa21b2fd338b249f5c317c229cb66704b0bf4ff3540872faa831ba69 is not running")
+2021-02-28T10:17:54Z {'REMOTE_ADDR': '123.160.221.24', 'REMOTE_PORT': '54562', 'HTTP_HOST': '193.112.177.167:8000', (hidden keys: 31)} failed with APIError
+
+<gevent._socket3.socket at 0x7f246a72c9a0 object, fd=6, family=2, type=2049, proto=0>: Invalid HTTP method: '\r\n'
