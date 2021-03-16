@@ -174,19 +174,44 @@ class ManagerHandler(Manager_grpc.ManagerServicer ):
         return Manager.PullImage_Response()
     
     def BuildImage(self, request, context):
-        dockerfile = TemporaryFile(mode="wb")
-        dockerfile.write(request.data)
-        ImageUtils.BuildImageByFile(dockerfile, request.tag)
-        return Manager.BuildImage_Response()
-
+        response = Manager.BuildImage_Response()
+        dockerfile = TemporaryFile()
+        dockerfile.write(request.dockerfile)
+        # print("-------")
+        dockerfile.seek(0)
+        image_obj = ImageUtils.BuildImageByFile(dockerfile, request.tag)
+        # try:
+        # except docker.errors.APIError:
+        #     response.exit_code = Manager.BuildImage_Response.ExitCode.ERROR
+        #     return response
+        response.exit_code = Manager.BuildImage_Response.ExitCode.SUCCESS
+        image = ImageUtils.GetImage(image_obj.id)
+        response.image_attr.id = image['Id']
+        for tag in image['RepoTags']:
+            response.image_attr.repoTags.append(tag)
+        response.image_attr.created = image['Created']
+        response.image_attr.size = int(image['Size'])
+        response.image_attr.author = image['Author']
+        return response
 
     def LoadImage(self, request, context):
         g = GenerateData(request)
-        List = ImageUtils.LoadImage(g)
         response = Manager.LoadImage_Response()
-        for image in List:
-            temp = response.image_id.add()
-            temp = image.id
+        try:
+            List = ImageUtils.LoadImage(g)
+        except docker.errors.ImageLoadError:
+            response.exit_code = Manager.LoadImage_Response.ExitCode.ERROR
+            return response
+        response.exit_code = Manager.LoadImage_Response.ExitCode.SUCCESS
+        for image_obj in List:
+            image = ImageUtils.GetImage(image_obj.id)
+            image_attr = response.image_attr.add()
+            for tag in image['RepoTags']:
+                temp = image_attr.repoTags.add()
+                temp = tag
+            image_attr.created = image['Created']
+            image_attr.size = int(image['Size'])
+            image_attr.author = image['Author']
         return response
     
     def GetImage(self, request, context):

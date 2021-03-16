@@ -19,10 +19,40 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0cManage.proto\"\xf3\x01\n\rContainerAttr\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\t\x12.\n\x06status\x18\x03 \x01(\x0e\x32\x1e.ContainerAttr.ContainerStatus\x12\r\n\x05image\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"x\n\x0f\x43ontainerStatus\x12\x0b\n\x07\x43REATED\x10\x00\x12\x0e\n\nRESTARTING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x0c\n\x08REMOVING\x10\x03\x12\n\n\x06PAUSED\x10\x04\x12\n\n\x06\x45XITED\x10\x05\x12\x08\n\x04\x44\x45\x41\x44\x10\x06\x12\x0b\n\x07UNKNOWN\x10\x07\"X\n\tImageAttr\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08repoTags\x18\x02 \x03(\t\x12\x0f\n\x07\x63reated\x18\x03 \x01(\t\x12\x0c\n\x04size\x18\x04 \x01(\x03\x12\x0e\n\x06\x61uthor\x18\x05 \x01(\t\"0\n\nAuthConfig\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x18\n\x16ListContainers_Request\"=\n\x17ListContainers_Response\x12\"\n\ncontainers\x18\x01 \x03(\x0b\x32\x0e.ContainerAttr\"\x19\n\x17PruneContainers_Request\"\x1a\n\x18PruneContainers_Response\",\n\x14GetContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x9a\x01\n\x15GetContainer_Response\x12\x32\n\texit_code\x18\x01 \x01(\x0e\x32\x1f.GetContainer_Response.ExitCode\x12&\n\x0e\x63ontainer_attr\x18\x02 \x01(\x0b\x32\x0e.ContainerAttr\"%\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x0c\n\x08NOTFOUND\x10\x01\".\n\x16StartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x19\n\x17StartContainer_Response\"-\n\x15StopContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x18\n\x16StopContainer_Response\"0\n\x18RestartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x1b\n\x19RestartContainer_Response\">\n\x17RemoveContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\r\n\x05\x66orce\x18\x02 \x01(\x08\"\x1a\n\x18RemoveContainer_Response\"U\n\x17\x43reateContainer_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x03 \x01(\t\"0\n\x18\x43reateContainer_Response\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"5\n\x0fGetFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\" \n\x10GetFile_Response\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"}\n\x12UpdateFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12\x11\n\tfile_name\x18\x03 \x01(\t\x12\x13\n\x0bold_version\x18\x04 \x01(\t\x12\r\n\x05\x66orce\x18\x05 \x01(\x08\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\"\xb5\x01\n\x13UpdateFile_Response\x12\x30\n\texit_code\x18\x01 \x01(\x0e\x32\x1d.UpdateFile_Response.ExitCode\x12\x13\n\x0bnew_version\x18\x02 \x01(\t\"W\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x14\n\x10MTIME_SYNC_ERROR\x10\x01\x12\x15\n\x11\x46ILE_IS_NOT_EXIST\x10\x02\x12\x11\n\rUNKNOWN_ERROR\x10\x03\"6\n\x10ListFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\"p\n\x08\x46ileStat\x12%\n\tfile_type\x18\x01 \x01(\x0e\x32\x12.FileStat.FileType\x12\x11\n\tfile_name\x18\x02 \x01(\t\"*\n\x08\x46ileType\x12\x08\n\x04\x46ILE\x10\x00\x12\n\n\x06\x46OLDER\x10\x01\x12\x08\n\x04LINK\x10\x02\"\x9f\x01\n\x11ListFile_Response\x12.\n\texit_code\x18\x01 \x01(\x0e\x32\x1b.ListFile_Response.ExitCode\x12\x18\n\x05\x66iles\x18\x02 \x03(\x0b\x32\t.FileStat\"@\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x12\n\x0eMINOR_PROBLEMS\x10\x01\x12\x13\n\x0fSERIOUS_TROUBLE\x10\x02\"\x15\n\x13PruneImages_Request\"\x16\n\x14PruneImages_Response\"\x14\n\x12ListImages_Request\"1\n\x13ListImages_Response\x12\x1a\n\x06images\x18\x01 \x03(\x0b\x32\n.ImageAttr\"V\n\x11PullImage_Request\x12\x12\n\nrepository\x18\x01 \x01(\t\x12\x0b\n\x03tag\x18\x02 \x01(\t\x12 \n\x0b\x61uth_config\x18\x03 \x01(\x0b\x32\x0b.AuthConfig\"\x14\n\x12PullImage_Response\"(\n\x12\x42uildImage_Request\x12\x12\n\ndockerfile\x18\x01 \x01(\x0c\"\x15\n\x13\x42uildImage_Response\"!\n\x11LoadImage_Request\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"&\n\x12LoadImage_Response\x12\x10\n\x08image_id\x18\x01 \x03(\t\"$\n\x10GetImage_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\"3\n\x11GetImage_Response\x12\x1e\n\nimage_attr\x18\x01 \x01(\x0b\x32\n.ImageAttr\"6\n\x13RemoveImage_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\x12\r\n\x05\x66orce\x18\x02 \x01(\x08\"\x16\n\x14RemoveImage_Response2\x84\t\n\x07Manager\x12\x45\n\x0eListContainers\x12\x17.ListContainers_Request\x1a\x18.ListContainers_Response\"\x00\x12H\n\x0fPruneContainers\x12\x18.PruneContainers_Request\x1a\x19.PruneContainers_Response\"\x00\x12?\n\x0cGetContainer\x12\x15.GetContainer_Request\x1a\x16.GetContainer_Response\"\x00\x12\x45\n\x0eStartContainer\x12\x17.StartContainer_Request\x1a\x18.StartContainer_Response\"\x00\x12\x42\n\rStopContainer\x12\x16.StopContainer_Request\x1a\x17.StopContainer_Response\"\x00\x12K\n\x10RestartContainer\x12\x19.RestartContainer_Request\x1a\x1a.RestartContainer_Response\"\x00\x12H\n\x0fRemoveContainer\x12\x18.RemoveContainer_Request\x1a\x19.RemoveContainer_Response\"\x00\x12H\n\x0f\x43reateContainer\x12\x18.CreateContainer_Request\x1a\x19.CreateContainer_Response\"\x00\x12\x32\n\x07GetFile\x12\x10.GetFile_Request\x1a\x11.GetFile_Response\"\x00\x30\x01\x12\x39\n\nUpdateFile\x12\x13.UpdateFile_Request\x1a\x14.UpdateFile_Response\"\x00\x12\x33\n\x08ListFile\x12\x11.ListFile_Request\x1a\x12.ListFile_Response\"\x00\x12<\n\x0bPruneImages\x12\x14.PruneImages_Request\x1a\x15.PruneImages_Response\"\x00\x12\x39\n\nListImages\x12\x13.ListImages_Request\x1a\x14.ListImages_Response\"\x00\x12\x36\n\tPullImage\x12\x12.PullImage_Request\x1a\x13.PullImage_Response\"\x00\x12\x39\n\nBuildImage\x12\x13.BuildImage_Request\x1a\x14.BuildImage_Response\"\x00\x12\x38\n\tLoadImage\x12\x12.LoadImage_Request\x1a\x13.LoadImage_Response\"\x00(\x01\x12\x33\n\x08GetImage\x12\x11.GetImage_Request\x1a\x12.GetImage_Response\"\x00\x12<\n\x0bRemoveImage\x12\x14.RemoveImage_Request\x1a\x15.RemoveImage_Response\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0cManage.proto\"p\n\x08\x46ileStat\x12%\n\tfile_type\x18\x01 \x01(\x0e\x32\x12.FileStat.FileType\x12\x11\n\tfile_name\x18\x02 \x01(\t\"*\n\x08\x46ileType\x12\x08\n\x04\x46ILE\x10\x00\x12\n\n\x06\x46OLDER\x10\x01\x12\x08\n\x04LINK\x10\x02\"\xf3\x01\n\rContainerAttr\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\t\x12.\n\x06status\x18\x03 \x01(\x0e\x32\x1e.ContainerAttr.ContainerStatus\x12\r\n\x05image\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"x\n\x0f\x43ontainerStatus\x12\x0b\n\x07\x43REATED\x10\x00\x12\x0e\n\nRESTARTING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x0c\n\x08REMOVING\x10\x03\x12\n\n\x06PAUSED\x10\x04\x12\n\n\x06\x45XITED\x10\x05\x12\x08\n\x04\x44\x45\x41\x44\x10\x06\x12\x0b\n\x07UNKNOWN\x10\x07\"X\n\tImageAttr\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08repoTags\x18\x02 \x03(\t\x12\x0f\n\x07\x63reated\x18\x03 \x01(\t\x12\x0c\n\x04size\x18\x04 \x01(\x03\x12\x0e\n\x06\x61uthor\x18\x05 \x01(\t\"0\n\nAuthConfig\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x18\n\x16ListContainers_Request\"=\n\x17ListContainers_Response\x12\"\n\ncontainers\x18\x01 \x03(\x0b\x32\x0e.ContainerAttr\"\x19\n\x17PruneContainers_Request\"\x1a\n\x18PruneContainers_Response\",\n\x14GetContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x9a\x01\n\x15GetContainer_Response\x12\x32\n\texit_code\x18\x01 \x01(\x0e\x32\x1f.GetContainer_Response.ExitCode\x12&\n\x0e\x63ontainer_attr\x18\x02 \x01(\x0b\x32\x0e.ContainerAttr\"%\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x0c\n\x08NOTFOUND\x10\x01\".\n\x16StartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x19\n\x17StartContainer_Response\"-\n\x15StopContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x18\n\x16StopContainer_Response\"0\n\x18RestartContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x1b\n\x19RestartContainer_Response\">\n\x17RemoveContainer_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\r\n\x05\x66orce\x18\x02 \x01(\x08\"\x1a\n\x18RemoveContainer_Response\"U\n\x17\x43reateContainer_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x03 \x01(\t\"B\n\x18\x43reateContainer_Response\x12&\n\x0e\x63ontainer_attr\x18\x01 \x01(\x0b\x32\x0e.ContainerAttr\"5\n\x0fGetFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\"1\n\x10GetFile_Response\x12\x0f\n\x07version\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"}\n\x12UpdateFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12\x11\n\tfile_name\x18\x03 \x01(\t\x12\x13\n\x0bold_version\x18\x04 \x01(\t\x12\r\n\x05\x66orce\x18\x05 \x01(\x08\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\"\xb5\x01\n\x13UpdateFile_Response\x12\x30\n\texit_code\x18\x01 \x01(\x0e\x32\x1d.UpdateFile_Response.ExitCode\x12\x13\n\x0bnew_version\x18\x02 \x01(\t\"W\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x14\n\x10MTIME_SYNC_ERROR\x10\x01\x12\x15\n\x11\x46ILE_IS_NOT_EXIST\x10\x02\x12\x11\n\rUNKNOWN_ERROR\x10\x03\"6\n\x10ListFile_Request\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\"\x9f\x01\n\x11ListFile_Response\x12.\n\texit_code\x18\x01 \x01(\x0e\x32\x1b.ListFile_Response.ExitCode\x12\x18\n\x05\x66iles\x18\x02 \x03(\x0b\x32\t.FileStat\"@\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x12\n\x0eMINOR_PROBLEMS\x10\x01\x12\x13\n\x0fSERIOUS_TROUBLE\x10\x02\"\x15\n\x13PruneImages_Request\"\x16\n\x14PruneImages_Response\"\x14\n\x12ListImages_Request\"1\n\x13ListImages_Response\x12\x1a\n\x06images\x18\x01 \x03(\x0b\x32\n.ImageAttr\"V\n\x11PullImage_Request\x12\x12\n\nrepository\x18\x01 \x01(\t\x12\x0b\n\x03tag\x18\x02 \x01(\t\x12 \n\x0b\x61uth_config\x18\x03 \x01(\x0b\x32\x0b.AuthConfig\"\x14\n\x12PullImage_Response\"5\n\x12\x42uildImage_Request\x12\x12\n\ndockerfile\x18\x01 \x01(\x0c\x12\x0b\n\x03tag\x18\x02 \x01(\t\"\x8b\x01\n\x13\x42uildImage_Response\x12\x30\n\texit_code\x18\x01 \x01(\x0e\x32\x1d.BuildImage_Response.ExitCode\x12\x1e\n\nimage_attr\x18\x02 \x01(\x0b\x32\n.ImageAttr\"\"\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\t\n\x05\x45RROR\x10\x01\"!\n\x11LoadImage_Request\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"\x89\x01\n\x12LoadImage_Response\x12/\n\texit_code\x18\x01 \x01(\x0e\x32\x1c.LoadImage_Response.ExitCode\x12\x1e\n\nimage_attr\x18\x02 \x03(\x0b\x32\n.ImageAttr\"\"\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\t\n\x05\x45RROR\x10\x01\"$\n\x10GetImage_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\"Z\n\x11GetImage_Response\x12\x1e\n\nimage_attr\x18\x01 \x01(\x0b\x32\n.ImageAttr\"%\n\x08\x45xitCode\x12\x0b\n\x07SUCCESS\x10\x00\x12\x0c\n\x08NOTFOUND\x10\x01\"6\n\x13RemoveImage_Request\x12\x10\n\x08image_id\x18\x01 \x01(\t\x12\r\n\x05\x66orce\x18\x02 \x01(\x08\"\x16\n\x14RemoveImage_Response2\x84\t\n\x07Manager\x12\x45\n\x0eListContainers\x12\x17.ListContainers_Request\x1a\x18.ListContainers_Response\"\x00\x12H\n\x0fPruneContainers\x12\x18.PruneContainers_Request\x1a\x19.PruneContainers_Response\"\x00\x12?\n\x0cGetContainer\x12\x15.GetContainer_Request\x1a\x16.GetContainer_Response\"\x00\x12\x45\n\x0eStartContainer\x12\x17.StartContainer_Request\x1a\x18.StartContainer_Response\"\x00\x12\x42\n\rStopContainer\x12\x16.StopContainer_Request\x1a\x17.StopContainer_Response\"\x00\x12K\n\x10RestartContainer\x12\x19.RestartContainer_Request\x1a\x1a.RestartContainer_Response\"\x00\x12H\n\x0fRemoveContainer\x12\x18.RemoveContainer_Request\x1a\x19.RemoveContainer_Response\"\x00\x12H\n\x0f\x43reateContainer\x12\x18.CreateContainer_Request\x1a\x19.CreateContainer_Response\"\x00\x12\x32\n\x07GetFile\x12\x10.GetFile_Request\x1a\x11.GetFile_Response\"\x00\x30\x01\x12\x39\n\nUpdateFile\x12\x13.UpdateFile_Request\x1a\x14.UpdateFile_Response\"\x00\x12\x33\n\x08ListFile\x12\x11.ListFile_Request\x1a\x12.ListFile_Response\"\x00\x12<\n\x0bPruneImages\x12\x14.PruneImages_Request\x1a\x15.PruneImages_Response\"\x00\x12\x39\n\nListImages\x12\x13.ListImages_Request\x1a\x14.ListImages_Response\"\x00\x12\x36\n\tPullImage\x12\x12.PullImage_Request\x1a\x13.PullImage_Response\"\x00\x12\x39\n\nBuildImage\x12\x13.BuildImage_Request\x1a\x14.BuildImage_Response\"\x00\x12\x38\n\tLoadImage\x12\x12.LoadImage_Request\x1a\x13.LoadImage_Response\"\x00(\x01\x12\x33\n\x08GetImage\x12\x11.GetImage_Request\x1a\x12.GetImage_Response\"\x00\x12<\n\x0bRemoveImage\x12\x14.RemoveImage_Request\x1a\x15.RemoveImage_Response\"\x00\x62\x06proto3'
 )
 
 
+
+_FILESTAT_FILETYPE = _descriptor.EnumDescriptor(
+  name='FileType',
+  full_name='FileStat.FileType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='FILE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='FOLDER', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='LINK', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=86,
+  serialized_end=128,
+)
+_sym_db.RegisterEnumDescriptor(_FILESTAT_FILETYPE)
 
 _CONTAINERATTR_CONTAINERSTATUS = _descriptor.EnumDescriptor(
   name='ContainerStatus',
@@ -74,8 +104,8 @@ _CONTAINERATTR_CONTAINERSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=140,
-  serialized_end=260,
+  serialized_start=254,
+  serialized_end=374,
 )
 _sym_db.RegisterEnumDescriptor(_CONTAINERATTR_CONTAINERSTATUS)
 
@@ -99,8 +129,8 @@ _GETCONTAINER_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=710,
-  serialized_end=747,
+  serialized_start=824,
+  serialized_end=861,
 )
 _sym_db.RegisterEnumDescriptor(_GETCONTAINER_RESPONSE_EXITCODE)
 
@@ -134,40 +164,10 @@ _UPDATEFILE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1516,
-  serialized_end=1603,
+  serialized_start=1665,
+  serialized_end=1752,
 )
 _sym_db.RegisterEnumDescriptor(_UPDATEFILE_RESPONSE_EXITCODE)
-
-_FILESTAT_FILETYPE = _descriptor.EnumDescriptor(
-  name='FileType',
-  full_name='FileStat.FileType',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='FILE', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FOLDER', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LINK', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=1731,
-  serialized_end=1773,
-)
-_sym_db.RegisterEnumDescriptor(_FILESTAT_FILETYPE)
 
 _LISTFILE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
   name='ExitCode',
@@ -194,10 +194,125 @@ _LISTFILE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1871,
-  serialized_end=1935,
+  serialized_start=1906,
+  serialized_end=1970,
 )
 _sym_db.RegisterEnumDescriptor(_LISTFILE_RESPONSE_EXITCODE)
+
+_BUILDIMAGE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
+  name='ExitCode',
+  full_name='BuildImage_Response.ExitCode',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='SUCCESS', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='ERROR', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2363,
+  serialized_end=2397,
+)
+_sym_db.RegisterEnumDescriptor(_BUILDIMAGE_RESPONSE_EXITCODE)
+
+_LOADIMAGE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
+  name='ExitCode',
+  full_name='LoadImage_Response.ExitCode',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='SUCCESS', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='ERROR', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2363,
+  serialized_end=2397,
+)
+_sym_db.RegisterEnumDescriptor(_LOADIMAGE_RESPONSE_EXITCODE)
+
+_GETIMAGE_RESPONSE_EXITCODE = _descriptor.EnumDescriptor(
+  name='ExitCode',
+  full_name='GetImage_Response.ExitCode',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='SUCCESS', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='NOTFOUND', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=824,
+  serialized_end=861,
+)
+_sym_db.RegisterEnumDescriptor(_GETIMAGE_RESPONSE_EXITCODE)
+
+
+_FILESTAT = _descriptor.Descriptor(
+  name='FileStat',
+  full_name='FileStat',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='file_type', full_name='FileStat.file_type', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='file_name', full_name='FileStat.file_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _FILESTAT_FILETYPE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=16,
+  serialized_end=128,
+)
 
 
 _CONTAINERATTR = _descriptor.Descriptor(
@@ -256,8 +371,8 @@ _CONTAINERATTR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=17,
-  serialized_end=260,
+  serialized_start=131,
+  serialized_end=374,
 )
 
 
@@ -316,8 +431,8 @@ _IMAGEATTR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=262,
-  serialized_end=350,
+  serialized_start=376,
+  serialized_end=464,
 )
 
 
@@ -355,8 +470,8 @@ _AUTHCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=352,
-  serialized_end=400,
+  serialized_start=466,
+  serialized_end=514,
 )
 
 
@@ -380,8 +495,8 @@ _LISTCONTAINERS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=402,
-  serialized_end=426,
+  serialized_start=516,
+  serialized_end=540,
 )
 
 
@@ -412,8 +527,8 @@ _LISTCONTAINERS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=428,
-  serialized_end=489,
+  serialized_start=542,
+  serialized_end=603,
 )
 
 
@@ -437,8 +552,8 @@ _PRUNECONTAINERS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=491,
-  serialized_end=516,
+  serialized_start=605,
+  serialized_end=630,
 )
 
 
@@ -462,8 +577,8 @@ _PRUNECONTAINERS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=518,
-  serialized_end=544,
+  serialized_start=632,
+  serialized_end=658,
 )
 
 
@@ -494,8 +609,8 @@ _GETCONTAINER_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=546,
-  serialized_end=590,
+  serialized_start=660,
+  serialized_end=704,
 )
 
 
@@ -534,8 +649,8 @@ _GETCONTAINER_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=593,
-  serialized_end=747,
+  serialized_start=707,
+  serialized_end=861,
 )
 
 
@@ -566,8 +681,8 @@ _STARTCONTAINER_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=749,
-  serialized_end=795,
+  serialized_start=863,
+  serialized_end=909,
 )
 
 
@@ -591,8 +706,8 @@ _STARTCONTAINER_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=797,
-  serialized_end=822,
+  serialized_start=911,
+  serialized_end=936,
 )
 
 
@@ -623,8 +738,8 @@ _STOPCONTAINER_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=824,
-  serialized_end=869,
+  serialized_start=938,
+  serialized_end=983,
 )
 
 
@@ -648,8 +763,8 @@ _STOPCONTAINER_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=871,
-  serialized_end=895,
+  serialized_start=985,
+  serialized_end=1009,
 )
 
 
@@ -680,8 +795,8 @@ _RESTARTCONTAINER_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=897,
-  serialized_end=945,
+  serialized_start=1011,
+  serialized_end=1059,
 )
 
 
@@ -705,8 +820,8 @@ _RESTARTCONTAINER_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=947,
-  serialized_end=974,
+  serialized_start=1061,
+  serialized_end=1088,
 )
 
 
@@ -744,8 +859,8 @@ _REMOVECONTAINER_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=976,
-  serialized_end=1038,
+  serialized_start=1090,
+  serialized_end=1152,
 )
 
 
@@ -769,8 +884,8 @@ _REMOVECONTAINER_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1040,
-  serialized_end=1066,
+  serialized_start=1154,
+  serialized_end=1180,
 )
 
 
@@ -815,8 +930,8 @@ _CREATECONTAINER_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1068,
-  serialized_end=1153,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 
@@ -829,9 +944,9 @@ _CREATECONTAINER_RESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='container_id', full_name='CreateContainer_Response.container_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='container_attr', full_name='CreateContainer_Response.container_attr', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -847,8 +962,8 @@ _CREATECONTAINER_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1155,
-  serialized_end=1203,
+  serialized_start=1269,
+  serialized_end=1335,
 )
 
 
@@ -886,8 +1001,8 @@ _GETFILE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1205,
-  serialized_end=1258,
+  serialized_start=1337,
+  serialized_end=1390,
 )
 
 
@@ -900,8 +1015,15 @@ _GETFILE_RESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='data', full_name='GetFile_Response.data', index=0,
-      number=1, type=12, cpp_type=9, label=1,
+      name='version', full_name='GetFile_Response.version', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='GetFile_Response.data', index=1,
+      number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -918,8 +1040,8 @@ _GETFILE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1260,
-  serialized_end=1292,
+  serialized_start=1392,
+  serialized_end=1441,
 )
 
 
@@ -985,8 +1107,8 @@ _UPDATEFILE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1294,
-  serialized_end=1419,
+  serialized_start=1443,
+  serialized_end=1568,
 )
 
 
@@ -1025,8 +1147,8 @@ _UPDATEFILE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1422,
-  serialized_end=1603,
+  serialized_start=1571,
+  serialized_end=1752,
 )
 
 
@@ -1064,48 +1186,8 @@ _LISTFILE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1605,
-  serialized_end=1659,
-)
-
-
-_FILESTAT = _descriptor.Descriptor(
-  name='FileStat',
-  full_name='FileStat',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='file_type', full_name='FileStat.file_type', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='file_name', full_name='FileStat.file_name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _FILESTAT_FILETYPE,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1661,
-  serialized_end=1773,
+  serialized_start=1754,
+  serialized_end=1808,
 )
 
 
@@ -1144,8 +1226,8 @@ _LISTFILE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1776,
-  serialized_end=1935,
+  serialized_start=1811,
+  serialized_end=1970,
 )
 
 
@@ -1169,8 +1251,8 @@ _PRUNEIMAGES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1937,
-  serialized_end=1958,
+  serialized_start=1972,
+  serialized_end=1993,
 )
 
 
@@ -1194,8 +1276,8 @@ _PRUNEIMAGES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1960,
-  serialized_end=1982,
+  serialized_start=1995,
+  serialized_end=2017,
 )
 
 
@@ -1219,8 +1301,8 @@ _LISTIMAGES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1984,
-  serialized_end=2004,
+  serialized_start=2019,
+  serialized_end=2039,
 )
 
 
@@ -1251,8 +1333,8 @@ _LISTIMAGES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2006,
-  serialized_end=2055,
+  serialized_start=2041,
+  serialized_end=2090,
 )
 
 
@@ -1297,8 +1379,8 @@ _PULLIMAGE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2057,
-  serialized_end=2143,
+  serialized_start=2092,
+  serialized_end=2178,
 )
 
 
@@ -1322,8 +1404,8 @@ _PULLIMAGE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2145,
-  serialized_end=2165,
+  serialized_start=2180,
+  serialized_end=2200,
 )
 
 
@@ -1342,6 +1424,13 @@ _BUILDIMAGE_REQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tag', full_name='BuildImage_Request.tag', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1354,8 +1443,8 @@ _BUILDIMAGE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2167,
-  serialized_end=2207,
+  serialized_start=2202,
+  serialized_end=2255,
 )
 
 
@@ -1367,11 +1456,26 @@ _BUILDIMAGE_RESPONSE = _descriptor.Descriptor(
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='exit_code', full_name='BuildImage_Response.exit_code', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='image_attr', full_name='BuildImage_Response.image_attr', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
   nested_types=[],
   enum_types=[
+    _BUILDIMAGE_RESPONSE_EXITCODE,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -1379,8 +1483,8 @@ _BUILDIMAGE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2209,
-  serialized_end=2230,
+  serialized_start=2258,
+  serialized_end=2397,
 )
 
 
@@ -1411,8 +1515,8 @@ _LOADIMAGE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2232,
-  serialized_end=2265,
+  serialized_start=2399,
+  serialized_end=2432,
 )
 
 
@@ -1425,8 +1529,15 @@ _LOADIMAGE_RESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='image_id', full_name='LoadImage_Response.image_id', index=0,
-      number=1, type=9, cpp_type=9, label=3,
+      name='exit_code', full_name='LoadImage_Response.exit_code', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='image_attr', full_name='LoadImage_Response.image_attr', index=1,
+      number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1436,6 +1547,7 @@ _LOADIMAGE_RESPONSE = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _LOADIMAGE_RESPONSE_EXITCODE,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -1443,8 +1555,8 @@ _LOADIMAGE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2267,
-  serialized_end=2305,
+  serialized_start=2435,
+  serialized_end=2572,
 )
 
 
@@ -1475,8 +1587,8 @@ _GETIMAGE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2307,
-  serialized_end=2343,
+  serialized_start=2574,
+  serialized_end=2610,
 )
 
 
@@ -1500,6 +1612,7 @@ _GETIMAGE_RESPONSE = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _GETIMAGE_RESPONSE_EXITCODE,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -1507,8 +1620,8 @@ _GETIMAGE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2345,
-  serialized_end=2396,
+  serialized_start=2612,
+  serialized_end=2702,
 )
 
 
@@ -1546,8 +1659,8 @@ _REMOVEIMAGE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2398,
-  serialized_end=2452,
+  serialized_start=2704,
+  serialized_end=2758,
 )
 
 
@@ -1571,26 +1684,35 @@ _REMOVEIMAGE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2454,
-  serialized_end=2476,
+  serialized_start=2760,
+  serialized_end=2782,
 )
 
+_FILESTAT.fields_by_name['file_type'].enum_type = _FILESTAT_FILETYPE
+_FILESTAT_FILETYPE.containing_type = _FILESTAT
 _CONTAINERATTR.fields_by_name['status'].enum_type = _CONTAINERATTR_CONTAINERSTATUS
 _CONTAINERATTR_CONTAINERSTATUS.containing_type = _CONTAINERATTR
 _LISTCONTAINERS_RESPONSE.fields_by_name['containers'].message_type = _CONTAINERATTR
 _GETCONTAINER_RESPONSE.fields_by_name['exit_code'].enum_type = _GETCONTAINER_RESPONSE_EXITCODE
 _GETCONTAINER_RESPONSE.fields_by_name['container_attr'].message_type = _CONTAINERATTR
 _GETCONTAINER_RESPONSE_EXITCODE.containing_type = _GETCONTAINER_RESPONSE
+_CREATECONTAINER_RESPONSE.fields_by_name['container_attr'].message_type = _CONTAINERATTR
 _UPDATEFILE_RESPONSE.fields_by_name['exit_code'].enum_type = _UPDATEFILE_RESPONSE_EXITCODE
 _UPDATEFILE_RESPONSE_EXITCODE.containing_type = _UPDATEFILE_RESPONSE
-_FILESTAT.fields_by_name['file_type'].enum_type = _FILESTAT_FILETYPE
-_FILESTAT_FILETYPE.containing_type = _FILESTAT
 _LISTFILE_RESPONSE.fields_by_name['exit_code'].enum_type = _LISTFILE_RESPONSE_EXITCODE
 _LISTFILE_RESPONSE.fields_by_name['files'].message_type = _FILESTAT
 _LISTFILE_RESPONSE_EXITCODE.containing_type = _LISTFILE_RESPONSE
 _LISTIMAGES_RESPONSE.fields_by_name['images'].message_type = _IMAGEATTR
 _PULLIMAGE_REQUEST.fields_by_name['auth_config'].message_type = _AUTHCONFIG
+_BUILDIMAGE_RESPONSE.fields_by_name['exit_code'].enum_type = _BUILDIMAGE_RESPONSE_EXITCODE
+_BUILDIMAGE_RESPONSE.fields_by_name['image_attr'].message_type = _IMAGEATTR
+_BUILDIMAGE_RESPONSE_EXITCODE.containing_type = _BUILDIMAGE_RESPONSE
+_LOADIMAGE_RESPONSE.fields_by_name['exit_code'].enum_type = _LOADIMAGE_RESPONSE_EXITCODE
+_LOADIMAGE_RESPONSE.fields_by_name['image_attr'].message_type = _IMAGEATTR
+_LOADIMAGE_RESPONSE_EXITCODE.containing_type = _LOADIMAGE_RESPONSE
 _GETIMAGE_RESPONSE.fields_by_name['image_attr'].message_type = _IMAGEATTR
+_GETIMAGE_RESPONSE_EXITCODE.containing_type = _GETIMAGE_RESPONSE
+DESCRIPTOR.message_types_by_name['FileStat'] = _FILESTAT
 DESCRIPTOR.message_types_by_name['ContainerAttr'] = _CONTAINERATTR
 DESCRIPTOR.message_types_by_name['ImageAttr'] = _IMAGEATTR
 DESCRIPTOR.message_types_by_name['AuthConfig'] = _AUTHCONFIG
@@ -1615,7 +1737,6 @@ DESCRIPTOR.message_types_by_name['GetFile_Response'] = _GETFILE_RESPONSE
 DESCRIPTOR.message_types_by_name['UpdateFile_Request'] = _UPDATEFILE_REQUEST
 DESCRIPTOR.message_types_by_name['UpdateFile_Response'] = _UPDATEFILE_RESPONSE
 DESCRIPTOR.message_types_by_name['ListFile_Request'] = _LISTFILE_REQUEST
-DESCRIPTOR.message_types_by_name['FileStat'] = _FILESTAT
 DESCRIPTOR.message_types_by_name['ListFile_Response'] = _LISTFILE_RESPONSE
 DESCRIPTOR.message_types_by_name['PruneImages_Request'] = _PRUNEIMAGES_REQUEST
 DESCRIPTOR.message_types_by_name['PruneImages_Response'] = _PRUNEIMAGES_RESPONSE
@@ -1632,6 +1753,13 @@ DESCRIPTOR.message_types_by_name['GetImage_Response'] = _GETIMAGE_RESPONSE
 DESCRIPTOR.message_types_by_name['RemoveImage_Request'] = _REMOVEIMAGE_REQUEST
 DESCRIPTOR.message_types_by_name['RemoveImage_Response'] = _REMOVEIMAGE_RESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+FileStat = _reflection.GeneratedProtocolMessageType('FileStat', (_message.Message,), {
+  'DESCRIPTOR' : _FILESTAT,
+  '__module__' : 'Manage_pb2'
+  # @@protoc_insertion_point(class_scope:FileStat)
+  })
+_sym_db.RegisterMessage(FileStat)
 
 ContainerAttr = _reflection.GeneratedProtocolMessageType('ContainerAttr', (_message.Message,), {
   'DESCRIPTOR' : _CONTAINERATTR,
@@ -1801,13 +1929,6 @@ ListFile_Request = _reflection.GeneratedProtocolMessageType('ListFile_Request', 
   })
 _sym_db.RegisterMessage(ListFile_Request)
 
-FileStat = _reflection.GeneratedProtocolMessageType('FileStat', (_message.Message,), {
-  'DESCRIPTOR' : _FILESTAT,
-  '__module__' : 'Manage_pb2'
-  # @@protoc_insertion_point(class_scope:FileStat)
-  })
-_sym_db.RegisterMessage(FileStat)
-
 ListFile_Response = _reflection.GeneratedProtocolMessageType('ListFile_Response', (_message.Message,), {
   'DESCRIPTOR' : _LISTFILE_RESPONSE,
   '__module__' : 'Manage_pb2'
@@ -1922,8 +2043,8 @@ _MANAGER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2479,
-  serialized_end=3635,
+  serialized_start=2785,
+  serialized_end=3941,
   methods=[
   _descriptor.MethodDescriptor(
     name='ListContainers',

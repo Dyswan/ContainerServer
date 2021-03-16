@@ -62,7 +62,7 @@ class ContainerUtils:
             hostname = hostname,
             mounts=[
                 docker.types.Mount(
-                    target = '/mnt',
+                    target = '/root',
                     source = mount_path,
                     type = 'bind'
                 )
@@ -149,8 +149,8 @@ class ImageUtils:
 
     @staticmethod
     def BuildImageByFile(fileobj, tag):
-        DOCKERCLIENT.images.build(fileobj=fileobj, tag=tag , quiet=True)
-
+        image, json = DOCKERCLIENT.images.build(fileobj=fileobj, tag=tag , quiet=True)
+        return image
     @staticmethod
     def LoadImage(data):
         return DOCKERCLIENT.images.load(data)

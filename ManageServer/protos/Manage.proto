@@ -1,5 +1,14 @@
 syntax = "proto3";
 
+message FileStat{
+     enum FileType{
+          FILE = 0;
+          FOLDER = 1;
+          LINK = 2;
+     }
+     FileType file_type = 1;
+     string file_name = 2;
+}
 message ContainerAttr{
      enum ContainerStatus{
           CREATED = 0;
@@ -86,7 +95,8 @@ message GetFile_Request{
      string path = 2;
 }
 message GetFile_Response{
-     bytes data = 1;
+     string version = 1;
+     bytes data = 2;
 }
 
 message UpdateFile_Request{
@@ -115,15 +125,6 @@ message ListFile_Request{
      string container_id = 1;
      string path = 2;
 }
-message FileStat{
-     enum FileType{
-          FILE = 0;
-          FOLDER = 1;
-          LINK = 2;
-     }
-     FileType file_type = 1;
-     string file_name = 2;
-}
 message ListFile_Response{
      enum ExitCode {
           SUCCESS = 0;
@@ -151,14 +152,27 @@ message PullImage_Response{}
 
 message BuildImage_Request{
      bytes dockerfile = 1;
+     string tag = 2; //ubuntu:18.04
 }
-message BuildImage_Response{}
+message BuildImage_Response{
+     enum ExitCode{
+          SUCCESS = 0;
+          ERROR = 1;
+     }
+     ExitCode exit_code = 1;
+     ImageAttr image_attr = 2;
+}
 
 message LoadImage_Request{
      bytes data = 1;
 }
 message LoadImage_Response{
-     repeated string image_id = 1;
+     enum ExitCode{
+          SUCCESS = 0;
+          ERROR = 1;
+     }
+     ExitCode exit_code = 1;
+     repeated ImageAttr image_attr = 2;
 }
 
 message GetImage_Request{

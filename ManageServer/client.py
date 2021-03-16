@@ -22,6 +22,20 @@ def GetFile():
             file.write(Data.data)
         file.close()
 
+def test_BuildImage():
+    with grpc.insecure_channel('0.0.0.0:8666') as channel:
+        # 客户端通过stub来实现rpc通信
+        stub = Manager_grpc.ManagerStub(channel)
+        file = open("dockerfile","rb")
+        dockerfile = file.read()
+        request = Manager.BuildImage_Request(
+            dockerfile = dockerfile,
+            tag = "test:v2.0"
+        )
+        # 客户端必须使用定义好的类型，这里是HelloRequest类型
+        response = stub.BuildImage(request=request)
+        print ("hello client received: " , response.exit_code)
+
 def GenerateData(List):
     for temp in List:
         yield temp
@@ -37,4 +51,5 @@ def run():
 # 1613637295
 if __name__ == "__main__":
     logging.basicConfig()
-    run()
+    # run()
+    test_BuildImage()
